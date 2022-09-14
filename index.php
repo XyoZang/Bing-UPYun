@@ -215,8 +215,9 @@ $p = $_REQUEST['p'];
         </div>
 
     </div>
-    
-    // 翻页模块
+    <div class="alert alert-secondary" role="alert">
+         <i class="iconfont icon-jingshi"></i> 本站所有图片均来自Bing搜索官网，版权归图片创作者所有。尊重版权，请勿商用！
+    </div>
     <div class="page">
         <?php
         if ($pmax==1)
