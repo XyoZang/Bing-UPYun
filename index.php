@@ -147,25 +147,65 @@ $p = $_REQUEST['p'];
 
         <div id="pic-js" class="row text-center justify-content-between">
             <?php
-            for ($i=0; $i<=11; $i++)
+            // 获取程序运行时间。
+            $Date_1=date("Y-m-d");
+            $Date_2= "2022-09-09";
+            $d1=strtotime($Date_1);
+            $d2=strtotime($Date_2);
+            $Days=round(($d1-$d2)/3600/24);
+            $pmax = $Days/12;
+            if ($Days%12 != 0){
+                $pmax += 1;
+            }
+            if ($p > $pmax || $p < 1) // 若跳转页码不在现有范围内，则转至404页面
             {
-                $pnumber = ($p-1) * 12 + $i;
-                $picnumber = (string)$pnumber;
-                $picjs = "pic-js-son";
-                $picid = $picjs . $picnumber; // "pic-js-son0-11"
-                $pic1preix = "https://bing.nxingcloud.co/api/?thumbnail=1&day="; // img: src
-                $pic25preix = "https://bing.nxingcloud.co/api/?thumbnail=25&day="; // img: data-src
-                $pic1url_1 = $pic1preix . $picnumber;
-                $pic25url_1 = $pic25preix . $picnumber;
+                header('content-type:text/html;charset=utf-8');
+                echo '<script>window.location.href="/404.html"</script>';
+            }
+            else if ($p = $pmax && ($Days%12)!=0) // 若页数为最后一页且有余数,则该页面只显示余数个数的图片
+            {
+                for ($i=0; $i<=($Days%12-1); $i++)
+                {
+                    $pnumber = ($p-1) * 12 + $i;
+                    $picnumber = (string)$pnumber;
+                    $picjs = "pic-js-son";
+                    $picid = $picjs . $picnumber; // "pic-js-son0-11"
+                    $pic1preix = "https://bing.nxingcloud.co/api/?thumbnail=1&day="; // img: src
+                    $pic25preix = "https://bing.nxingcloud.co/api/?thumbnail=25&day="; // img: data-src
+                    $pic1url_1 = $pic1preix . $picnumber;
+                    $pic25url_1 = $pic25preix . $picnumber;
             ?>
-            <div id="<?php echo $picid; ?>" data-day="<?php echo $picnumber; ?>" class="pic-item my-3 shadow-sm rounded">
-                <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="<?php echo $pic25url_1; ?>"
-                        src="<?php echo $pic1url_1; ?>" alt="">
+                <div id="<?php echo $picid; ?>" data-day="<?php echo $picnumber; ?>" class="pic-item my-3 shadow-sm rounded">
+                    <div class="progressive">
+                        <img class="rounded img-fluid preview lazy" data-src="<?php echo $pic25url_1; ?>"
+                            src="<?php echo $pic1url_1; ?>" alt="">
+                    </div>
+                    <p class="my-2"></p>
                 </div>
-                <p class="my-2"></p>
-            </div>
             <?php
+                }
+            } else
+            {
+                for ($i=0; $i<=11; $i++)
+                {
+                    $pnumber = ($p-1) * 12 + $i;
+                    $picnumber = (string)$pnumber;
+                    $picjs = "pic-js-son";
+                    $picid = $picjs . $picnumber; // "pic-js-son0-11"
+                    $pic1preix = "https://bing.nxingcloud.co/api/?thumbnail=1&day="; // img: src
+                    $pic25preix = "https://bing.nxingcloud.co/api/?thumbnail=25&day="; // img: data-src
+                    $pic1url_1 = $pic1preix . $picnumber;
+                    $pic25url_1 = $pic25preix . $picnumber;
+            ?>
+                <div id="<?php echo $picid; ?>" data-day="<?php echo $picnumber; ?>" class="pic-item my-3 shadow-sm rounded">
+                    <div class="progressive">
+                        <img class="rounded img-fluid preview lazy" data-src="<?php echo $pic25url_1; ?>"
+                            src="<?php echo $pic1url_1; ?>" alt="">
+                    </div>
+                    <p class="my-2"></p>
+                </div>
+            <?php
+                }
             }
             ?>
         </div>
