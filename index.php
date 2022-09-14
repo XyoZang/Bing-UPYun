@@ -92,7 +92,7 @@ $p = $_REQUEST['p'];
         </div>
     </nav>
     <?php
-    if (!$p)
+    if (!$p || $p==1)
     {
         $p = 1;
     ?>
@@ -145,7 +145,7 @@ $p = $_REQUEST['p'];
     <div id="pic-tit" class="container align-middle">
         <h4><strong>往日图片</strong> <span class="badge badge-info">HD</span></h4>
     </div>
-    
+
     <!-- 图片 -->
     <div class="container" id="pic-list">
 
@@ -156,8 +156,8 @@ $p = $_REQUEST['p'];
             $Date_2= "2022-09-09";
             $d1=strtotime($Date_1);
             $d2=strtotime($Date_2);
-            $Days=round(($d1-$d2)/3600/24) + 1;
-            $pmax = $Days/12;
+            $Days=ceil(($d1-$d2)/3600/24) + 1;
+            $pmax = floor($Days/12);
             if ($Days%12 != 0){
                 $pmax += 1;
             }
@@ -166,7 +166,7 @@ $p = $_REQUEST['p'];
                 header('content-type:text/html;charset=utf-8');
                 echo '<script>window.location.href="/404.html"</script>';
             }
-            else if ($p = $pmax && ($Days%12)!=0) // 若页数为最后一页且有余数,则该页面只显示余数个数的图片
+            elseif ($p == $pmax && ($Days%12)!=0) // 若页数为最后一页且有余数,则该页面只显示余数个数的图片
             {
                 for ($i=0; $i<=($Days%12-1); $i++)
                 {
@@ -214,6 +214,32 @@ $p = $_REQUEST['p'];
             ?>
         </div>
 
+    </div>
+    
+    // 翻页模块
+    <div class="page">
+        <?php
+        if ($pmax==1)
+        {
+            $back = "/?p=1";
+            $next = "/?p=1";
+        }
+        else {
+            if ($p == 1){
+                $back = "/?p=" . $pmax;
+                $next = "/?p=" . ($p+1);
+            } elseif ($p == $pmax) {
+                $back = "/?p=" . ($p-1);
+                $next = "/";
+            } else {
+                $back = "/?p=" . ($p-1);
+                $next = "/?p=" . ($p+1);
+            }
+        }
+        ?>
+        <a href=<?php echo $back; ?>>上一页</a>
+        <span> <?php echo $p; ?> / <?php echo $pmax; ?> </span>
+        <a href=<?php echo $next; ?>>下一页</a>
     </div>
 
     <!-- 页脚 -->
