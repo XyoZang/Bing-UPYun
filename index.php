@@ -7,6 +7,7 @@ $p = $_REQUEST['p'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://cdn.nxingcloud.co/images/logo/icon/bing-0eebe3c8d9b72f7730a537ef6289b198-2c327f.ico" type="image/x-icon">
     <title>必应每日一图 - 领略世界之美</title>
     <link href="lib/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/progressive-image.css">
@@ -66,15 +67,17 @@ $p = $_REQUEST['p'];
                         关于
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <!--
                         <a class="dropdown-item" href="https://www.mcloc.cn/"><i class="iconfont icon-weibiaoti1"></i>
                             小马奔腾的作品集</a>
-                        <a class="dropdown-item" href="https://blog.mcloc.cn/"><i class="iconfont icon-t"></i>
-                            小马奔腾的博客</a>
-                        <a class="dropdown-item" href="https://github.com/androidmumo/Bing-upyun"><i
-                                class="iconfont icon-github"></i> GitHub</a>
+                        -->
+                        <a class="dropdown-item" href="https://nxingcloud.co/"><i class="iconfont icon-t"></i>
+                            南星的博客</a>
+                        <a class="dropdown-item" href="https://github.com/ZhangXQA/Bing-upyun"><i
+                                class="iconfont icon-github"></i> GitHub--本站源码</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="https://blog.mcloc.cn/archives/632.html"><i
-                                class="iconfont icon-guanyu"></i> 关于 Bing.mcloc.cn</a>
+                        <a class="dropdown-item" href="/about/"><i
+                                class="iconfont icon-guanyu"></i> 关于本站 </a>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -142,6 +145,7 @@ $p = $_REQUEST['p'];
     <div id="pic-tit" class="container align-middle">
         <h4><strong>往日图片</strong> <span class="badge badge-info">HD</span></h4>
     </div>
+    
     <!-- 图片 -->
     <div class="container" id="pic-list">
 
