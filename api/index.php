@@ -64,7 +64,7 @@ if ($type == "json") {
             $Date_2= $startdate;
             $d1=strtotime($Date_1);
             $d2=strtotime($Date_2);
-            $Days=ceil(($d1-$d2)/3600/24) + 1;
+            $Days=ceil(($d1-$d2)/3600/24);
             $randdays = mt_rand(0, $Days);
             $dateEnd = gmdate('d-M-Y', time() + 3600 * 8 - $delay - ($randdays * 3600 * 24));
         //若不获取随机图则返回当天图片
