@@ -38,11 +38,12 @@ if ($imgdate){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://cdn.nxingcloud.co/images/logo/icon/bing-0eebe3c8d9b72f7730a537ef6289b198-2c327f.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./static/icons8-bing-32.ico" type="image/x-icon">
     <title>必应每日一图 - 领略世界之美</title>
     <link href="lib/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/progressive-image.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2042758_2fi5tvz8vl4.css">
+    <script async defer data-website-id="6264fbba-f3be-4116-bad8-f1a94d822ab9" src="https://uma.nxingcloud.co/xuezm.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
@@ -116,7 +117,7 @@ if ($imgdate){
                 </li>
             </ul>
 
-            <!-- <form class="form-inline my-2 my-lg-0">
+            <!--<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
@@ -275,14 +276,23 @@ if ($imgdate){
         <div class="container">
             <div class="row justify-content-around">
                 <div class="card text-white bg-secondary mb-3" style="width: 18rem;">
-                    <div class="card-header">关于这个网站</div>
+                    <div class="card-header">本站功能</div>
                     <div class="card-body">
                         <h5 class="card-title">About this website</h5>
                         <p class="card-text">
-                            必应搜索首页背景图，每天零点更新，并提供支持图片处理、回溯的接口。<br>
+                            本站提供必应每日壁纸超高分辨率原图下载，同时支持图片处理、回溯的API接口。<br>
                             诗曰：“ 沉舟侧畔千帆过，病树前头万木春。”
                             请跟随必应的脚步，带您领略世界之美。
                         </p>
+                    </div>
+                </div>
+                
+                <div class="card text-white bg-secondary mb-3" style="width: 18rem;">
+                    <div class="card-header">本站信息</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Website information</h5>
+                        <p class="links" class="card-text">本站建立日期为2022-09-09，采用又拍云作为云存储，在小马奔腾的源码基础上进行了二次开发，修改详情请移步"<a href="/about/">关于本站</a>"</p><br>
+                        <p class="links" class="card-text"><a href="/about/" class="card-link">提点建议</a></p>
                     </div>
                 </div>
 
@@ -291,18 +301,10 @@ if ($imgdate){
                     <div class="card-body">
                         <h5 class="card-title">Links</h5>
                         <p class="links" class="card-text"><a href="https://nxingcloud.co/">南星的博客</a></p>
+                        <p class="links" class="card-text"><a href="https://blog.mcloc.cn/" class="card-link">小马奔腾的博客</a></p>
                     </div>
                 </div>
-                
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">本站源码</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">The source code.</h6>
-                        <p class="card-text">本站源码来自于大佬小马奔腾。</p>
-                        <!--<a href="https://blog.mcloc.cn/archives/632.html" class="card-link">提点建议</a>-->
-                        <a href="https://blog.mcloc.cn/" class="card-link">小马奔腾的博客</a>
-                    </div>
-                </div>
+
             </div>
 
             <div class="row text-center align-middle">
