@@ -54,13 +54,8 @@ body {
     overflow-x: hidden
 }
 
-div#Comments {
-    position: relative;
-    width: 800px;
-    top: 0px;
-    left: 0;
-    right: 0;
-    margin: auto;
+div#vcomments {
+    margin-top: 5rem;
 }
 
 img {

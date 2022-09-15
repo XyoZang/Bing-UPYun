@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta content="telephone=no,email=no" name="format-detection">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/about/vue.css">
     <link rel="stylesheet" type="text/css" href="../css/about/iconfont.css">
     <link rel="icon" href="../static/icons8-bing-32.ico" sizes="32x32">
@@ -126,23 +126,25 @@
             <p>7、修复了若干BUG。</p>
             <p>有何意见或建议可在下方评论区留言。</p>
             <p style="text-align:right">2022-09-09 By <a href="https://nxingcloud.co" target="_blank">南星&NXING</a></p>
+            <link href="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-2a1f8b36.css" rel="stylesheet">
+            <script src="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-b5b3a442.js"></script>
+            <div id="vcomments"></div>
+            <script>
+              new Artalk({
+                el:        '#vcomments',              // 绑定元素的 Selector
+                pageKey:   '',                // 固定链接 (留空自动获取)
+                pageTitle: '', // 页面标题 (留空自动获取)
+                server:    'https://artalk.nxingcloud.co',  // 后端地址
+                site:      '必应每日一图',           // 你的站点名
+                placeholder: '有何意见或建议可在此留言~',
+                emoticons: ["https://cdn.nxingcloud.co/assets/emoji/bilibili2233/bilibili2233-695ddd75ffd2f17e401c4b1642c67492-71d0f6.json",
+                "https://cdn.nxingcloud.co/assets/emoji/Tieba/Tieba-a74dcc7cda7f5b2a876e01ceaa82af09-cc8d29.json"]
+              })
+            </script>
         </article>
+        
     </section>
-    <link href="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-2a1f8b36.css" rel="stylesheet">
-    <script src="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-b5b3a442.js"></script>
-    <div id="Comments"></div>
-    <script>
-      new Artalk({
-        el:        '#Comments',              // 绑定元素的 Selector
-        pageKey:   '',                // 固定链接 (留空自动获取)
-        pageTitle: '', // 页面标题 (留空自动获取)
-        server:    'https://artalk.nxingcloud.co',  // 后端地址
-        site:      '必应每日一图',           // 你的站点名
-        placeholder: '有何意见或建议可在此留言~',
-        emoticons: ["https://cdn.nxingcloud.co/assets/emoji/bilibili2233/bilibili2233-695ddd75ffd2f17e401c4b1642c67492-71d0f6.json",
-        "https://cdn.nxingcloud.co/assets/emoji/Tieba/Tieba-a74dcc7cda7f5b2a876e01ceaa82af09-cc8d29.json"]
-      })
-    </script>
+    
     <footer class="container-about">
         <div class="container">
             <div class="row text-center align-middle">

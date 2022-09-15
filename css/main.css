@@ -1,4 +1,17 @@
 #header-icon{font-size:32px}#header-text{line-height:58px}footer{min-height:20rem;margin-top:5rem;background:#f8f9fa;overflow:hidden}footer>div>div{margin:2rem 0 0 0}footer #foottext{line-height:30px;font-size:13px}footer #foottext img{height:12px}.links a{color:#fff} .container-about{
+    position:relative;
+    bottom: 0px;
+    width: 100%;
+    min-height: 0;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container-404{
+    position:absolute;
+    bottom: 0px;
     width: 100%;
     min-height: 0;
     padding-right: 15px;
