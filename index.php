@@ -2,6 +2,17 @@
 <html lang="cn">
 <?php
 $p = $_REQUEST['p'];
+$imgdate = $_REQUEST['date'];
+if ($imgdate){
+    $Date_1=date("Y-m-d");
+    $Date_2= $imgdate;
+    $d1=strtotime($Date_1);
+    $d2=strtotime($Date_2);
+    $Daydata=ceil(($d1-$d2)/3600/24) + 1;
+    $imgurl = "/detail/?daydata=" . $Daydata;
+    header('content-type:text/html;charset=utf-8');
+    echo '<script>window.location.href=' . $imgurl . '</script>';
+}
 ?>
 
 <head>

@@ -33,7 +33,7 @@ $("#btnUhd").click(function()
         var e=window.URL.createObjectURL(n.response),
         t=document.createElement("a");
         t.href=e,
-        t.download=imgUrlHd.substr(-15, 15), 
+        t.download=imgUrlUhd.substring(27), 
         t.click()
     },
         n.send(),
