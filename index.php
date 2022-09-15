@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html lang="cn">
 <?php
+// 获取页码参数
 $p = $_REQUEST['p'];
-$imgdate = $_REQUEST['date'];
+
+//引入配置文件
+$config = include 'api/php/config.php';
+
+//初始化配置
+$startdate = $config['startdate'];
+
+// 获取程序运行时间
+$Date_1=date("Y-m-d"); // 20**-**-**格式
+$Date_2= $startdate;
+$d1=strtotime($Date_1); //现在时间
+$d2=strtotime($Date_2); //网站建立时间
+
+// 检查是否图片跳转
+$imgdate = $_REQUEST['d'];
 if ($imgdate){
-    $Date_1=date("Y-m-d");
-    $Date_2= $imgdate;
-    $d1=strtotime($Date_1);
-    $d2=strtotime($Date_2);
-    $Daydata=ceil(($d1-$d2)/3600/24) + 1;
-    $imgurl = "/detail/?daydata=" . $Daydata;
-    header('content-type:text/html;charset=utf-8');
-    echo '<script>window.location.href=' . $imgurl . '</script>';
+    $Date_3=date("d-M-Y"); // **-Sep-****格式
+    $Date_4= $imgdate;
+    $d3=strtotime($Date_3); // 现在时间
+    $d4=strtotime($Date_4); // 请求图片的时间
+    if ($d2 <= $d4 && $d4 <= $d3  ){
+        $imgday=ceil(($d3-$d4)/3600/24);
+        $imgurl = "/detail/?daydata=" . $imgday;
+        header('content-type:text/html;charset=utf-8');
+        echo "'<script>window.location.href='$imgurl'</script>'";
+    } else{
+        header('content-type:text/html;charset=utf-8');
+        echo '<script>window.location.href="/404.html"</script>';
+    }
 }
 ?>
 
@@ -29,7 +49,7 @@ if ($imgdate){
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="header-text" class="navbar-brand align-middle" href="index.html"> <i id="header-icon"
+        <a id="header-text" class="navbar-brand align-middle" href="/about/"> <i id="header-icon"
                 class="iconfont icon-Bing align-bottom"></i> <strong>必应每日一图</strong> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -163,10 +183,6 @@ if ($imgdate){
         <div id="pic-js" class="row text-center justify-content-between">
             <?php
             // 获取程序运行时间。
-            $Date_1=date("Y-m-d");
-            $Date_2= "2022-09-09";
-            $d1=strtotime($Date_1);
-            $d2=strtotime($Date_2);
             $Days=ceil(($d1-$d2)/3600/24) + 1;
             $pmax = floor($Days/12);
             if ($Days%12 != 0){
@@ -250,7 +266,7 @@ if ($imgdate){
         }
         ?>
         <a href=<?php echo $back; ?>>上一页</a>
-        <span> <?php echo $p; ?> / <?php echo $pmax; ?> </span>
+        <span>  <?php echo $p; ?> / <?php echo $pmax; ?>  </span>
         <a href=<?php echo $next; ?>>下一页</a>
     </div>
 
@@ -291,7 +307,7 @@ if ($imgdate){
 
             <div class="row text-center align-middle">
                 <p id="foottext" class="col align-baseline text-secondary">
-                    nxingcloud.co &copy;
+                    Copyright &copy;
                     <a target="_blank" href="https://nxingcloud.co/" class="text-secondary">
                         2022 南星&NXING
                     </a>&nbsp;|&nbsp;
@@ -303,8 +319,8 @@ if ($imgdate){
                         class="text-secondary">
                         <img src="https://www.mcloc.cn/wp-content/uploads/2020/04/beiantubiao-18.png" />
                         豫公网安备 41080202000141号
-                    -->
                     </a>&nbsp;|&nbsp;
+                    -->
                     <a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
                         class="text-secondary">
                         本网站由

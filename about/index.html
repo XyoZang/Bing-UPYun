@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>关于 | 必应每日高清壁纸</title>
+    <meta name="keywords" content="必应壁纸,必应美图,必应每日壁纸,必应每日美图,必应壁纸下载,必应每日壁纸下载,必应每日壁纸接口,必应每日壁纸官方下载,Bing壁纸,微软bing每日壁纸">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/css/about/vue.css">
+    <link rel="stylesheet" type="text/css" href="/css/about/iconfont.css">
+    <link rel="icon" href="https://cdn.nxingcloud.co/images/logo/icon/bing-0eebe3c8d9b72f7730a537ef6289b198-2c327f.ico" sizes="32x32">
+    <style>
+        i.serif {
+            text-transform: lowercase;
+            color: #1abc9c;
+        }
+        .icon {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <section class="content" style="overflow:auto;">
+        <article class="markdown-section" id="main">
+            <h1  style="text-align: center;">
+                <a href="/" ><i class="icon icon-bing"></i><span>必应壁纸</span></a>
+            </h1>
+            <p style="text-align: center;"><i class="serif">Bing</i> 每日壁纸，你值得拥有</p>
+            <br>
+            <p>Hi! 这里是 <a href="https://nxingcloud.co" target="_blank">@南星</a>搭建的<a href="https://github.com/ZhangXQA/Bing-upyun" target='_blank'>Bing 壁纸</a>项目</p>
+            <p><a href="https://github.com/androidmumo/Bing-upyun" target="_blank">本网站的源码</a>来自大佬小马奔腾，这里是<a href="https://blog.mcloc.cn/" target="_blank">小马奔腾的博客</a></p>
+            <p>因为自己有需要用到Bing壁纸，就着手搭建了一个，初步运行壁纸比较少，每日会新增一张图。</p>
+            <p>本网站所有的图片均上传至又拍云存储，可通过又拍云链接或本站服务器链接下载。HD下载方式默认分辨率均为1920x1080，UHD下载方式为服务器中转至必应官方原图下载，无固定分辨率（一般均高于1080P）。若有不同分辨率需求请自行下载图片后修改。</p>
+            <p>本站点修改了部分源代码，更新了以下功能：</p>
+            <p>1、添加API的random参数，实现随机获取一张图片。</p>
+            <p>2、增加分页功能，展示本站所有的图片。</p>
+            <p>3、更换本站评论系统为Artalk。</p>
+            <p>4、前端界面略有更改。</p>
+            <p>5、修复了若干BUG。</p>
+            <p><a href="https://nxingcloud.co" target="_blank">2022 南星&NXING</a></p>
+        </article>
+    </section>
+    <link href="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-2a1f8b36.css" rel="stylesheet">
+    <script src="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-b5b3a442.js"></script>
+    <div id="Comments"></div>
+    <script>
+      new Artalk({
+        el:        '#Comments',              // 绑定元素的 Selector
+        pageKey:   '',                // 固定链接 (留空自动获取)
+        pageTitle: '', // 页面标题 (留空自动获取)
+        server:    'https://artalk.nxingcloud.co',  // 后端地址
+        site:      '必应每日一图',           // 你的站点名
+        placeholder: '有何意见或建议可在此留言~',
+        emoticons: ["https://cdn.nxingcloud.co/assets/emoji/bilibili2233/bilibili2233-695ddd75ffd2f17e401c4b1642c67492-71d0f6.json",
+        "https://cdn.nxingcloud.co/assets/emoji/Tieba/Tieba-a74dcc7cda7f5b2a876e01ceaa82af09-cc8d29.json"]
+      })
+    </script>
+    
+</body>
+</html>
