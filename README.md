@@ -3,16 +3,6 @@
 
 
 
-> ### :warning: 注意：此项目已停止维护！
-> 
-> 若有需要，请移步： [bing-vue](https://github.com/androidmumo/bing-vue)，使用vue3构建的必应每日一图。
-> 
-> 此项目以后不会添加新功能，但可能会有修复bug的更新。
-> 
-> 若为得到较好的CDN优化，此项目仍然是个好选择。
-
-
-
 ### 1.简介
 
 - 轻量、迅速、无占用
@@ -58,7 +48,7 @@ https://bing.nxingcloud.co/
 
 ##### 2.3 前端特性
 
-用到的库或者框架有：Bootstrap4、jQuery1.11.0、Valine、[progressive-image](https://github.com/ccforward/progressive-image)。
+用到的库或者框架有：Bootstrap4、jQuery1.11.0、Artalk、[progressive-image](https://github.com/ccforward/progressive-image)。
 
 - 响应式
 
@@ -66,7 +56,7 @@ https://bing.nxingcloud.co/
 
 - 图片渐进加载（模糊到清晰）
 
-- 无后台评论系统
+- Artalk评论系统
 
   
 
@@ -91,18 +81,18 @@ https://bing.nxingcloud.co/
 
 ```
 {
-"bing_id": "21",
-"bing_title": "日落时分中央海岸入口海滩上的救生员小屋，澳大利亚新南威尔士州 (© Yury Prokopenko/Getty Images)",
-"bing_imgurl": "https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020.jpg",
-"bing_imgurlcom_25": "https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020-compress_25.jpg",
-"bing_imgurluhd": "https://cn.bing.com/th?id=OHR.LifeguardEntrance_ZH-CN7394984988_UHD.jpg",
-"bing_imgname": "LifeguardEntrance_ZH-CN7394984988",
-"bing_hsh": "a8712ff7ed3690123f96c2f95830b9f6",
-"submission_date": "15-Sep-2020",
-"submission_fulldate": "15-Sep-2020 00:01:01",
-"bing_imgbase64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsK\r\nCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQU\r\nFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAJABADAREA\r\nAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAgMHCP/EACUQAAEEAQMCBwAAAAAAAAAAAAECAwQF\r\nEQAGEgcxNDdhc3Sxs//EABcBAAMBAAAAAAAAAAAAAAAAAAMFBgT/xAAnEQABAwIEBQUAAAAAAAAA\r\nAAABAAIDESEEEnGREzI0grExYXKBof/aAAwDAQACEQMRAD8ALpfa2VFBdK26liOlAdczeMFsN8iA\r\noBSVcRkEA5HbQ8bNhwQDMAdKn8KosCcrXF0VR8qDYhJuJx3Nf2KLawiSYrLCVsR2JraXIzKSAQt5\r\nZwvuMEJHoDjS5mJcM2V7aXob1P0AKblbomwSPdx2kelqiw9yTfZZz2L5Ebz+cz9alJ+rj0Q4eil1\r\nCpEjwF57VZ+Wlw5m93lNhySdvhf/2Q==\r\n",
-"other": "0",
-"bing_did": "20200915"
+    "bing_id": "21",
+    "bing_title": "日落时分中央海岸入口海滩上的救生员小屋，澳大利亚新南威尔士州 (© Yury Prokopenko/Getty Images)",
+    "bing_imgurl": "https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020.jpg",
+    "bing_imgurlcom_25": "https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020-compress_25.jpg",
+    "bing_imgurluhd": "https://cn.bing.com/th?id=OHR.LifeguardEntrance_ZH-CN7394984988_UHD.jpg",
+    "bing_imgname": "LifeguardEntrance_ZH-CN7394984988",
+    "bing_hsh": "a8712ff7ed3690123f96c2f95830b9f6",
+    "submission_date": "15-Sep-2020",
+    "submission_fulldate": "15-Sep-2020 00:01:01",
+    "bing_imgbase64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsK\r\nCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQU\r\nFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAJABADAREA\r\nAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAgMHCP/EACUQAAEEAQMCBwAAAAAAAAAAAAECAwQF\r\nEQAGEgcxNDdhc3Sxs//EABcBAAMBAAAAAAAAAAAAAAAAAAMFBgT/xAAnEQABAwIEBQUAAAAAAAAA\r\nAAABAAIDESEEEnGREzI0grExYXKBof/aAAwDAQACEQMRAD8ALpfa2VFBdK26liOlAdczeMFsN8iA\r\noBSVcRkEA5HbQ8bNhwQDMAdKn8KosCcrXF0VR8qDYhJuJx3Nf2KLawiSYrLCVsR2JraXIzKSAQt5\r\nZwvuMEJHoDjS5mJcM2V7aXob1P0AKblbomwSPdx2kelqiw9yTfZZz2L5Ebz+cz9alJ+rj0Q4eil1\r\nCpEjwF57VZ+Wlw5m93lNhySdvhf/2Q==\r\n",
+    "other": "0",
+    "bing_did": "20200915"
 }
 ```
 
@@ -129,7 +119,7 @@ https://bing.nxingcloud.co/
 https://bing.nxingcloud.co/api
 ```
 
-此接口为[小马奔腾](https://blog.mcloc.cn/)免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。
+此接口为[南星&NXING](https://nxingcloud.co/)免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。
 
 
 
@@ -174,18 +164,21 @@ https://bing.nxingcloud.co/api
     │   │   └── index.php	// 后台图片处理程序
     │   └── index.php		// 图片调用接口
     ├── css
+    │   ├── about
+    │   ├── fonts
     │   ├── detail.css		// 详情页样式表
     │   ├── index.css		// 首页样式表
     │   └── main.css		// 主样式表
-    ├── html
-    │   └── detail.html		// 详情页
+    ├── detail
+    │   └── index.html		// 详情页
+    ├── about
+    │    └── index.html             // 关于本站
     ├── js
     │   ├── detail.js		// 详情页js
     │   ├── index.js		// 首页js
     │   └── main.js			// 主js
     ├── lib					//第三方库
     │   ├── layer
-    │   ├── Valine.min.js
     │   ├── bootstrap.min.css.map
     │   ├── bootstrap.min.css
     │   ├── bootstrap.min.js.map
@@ -195,7 +188,7 @@ https://bing.nxingcloud.co/api
     │   └── progressive-image.js
     ├── static				//静态资源
     │   └── upyun_logo5.png
-    └── index.html			// 首页
+    └── index.php			// 首页
 
 
 ##### 4.1.3 配置信息
@@ -203,6 +196,10 @@ https://bing.nxingcloud.co/api
 在 `api/php/config.php` 中修改：
 
 ```php
+
+// 网站建立日期
+$config['startdate']     = '********';  //格式应为****-**-**, 例如：2022-09-15
+
 //又拍云连接信息
 $config['bucketName']    = '********';  //你的又拍云存储库
 $config['operatorName']  = '********';  //你的存储库操作员
@@ -234,7 +231,7 @@ $config['mysqlDbname']   = '********';  //MySQL数据库名
 
 接口调用URL： `网站根目录/api/index.php` 或 `网站根目录/api`
 
-为避免时间误差引起的问题，建议**不要**将定时任务设置在每天的 00:00:00 ，推荐将定时任务设置在每日 **00:01:00** ，若如此做，则在完成以上步骤后，不需要额外设置。否则请参照以下规则：
+为避免时间误差引起的问题，建议**不要**将定时任务设置在每天的 00:00:00 ，推荐将定时任务设置在每日 **00:05:00** ，若如此做，则在完成以上步骤后，不需要额外设置。否则请参照以下规则：
 
  `api/php/config.php` 中的`$config['delay']`为延时时间，如 `$config['delay'] = 90;` 即调用80s前的图片。这也就意味着，您在每天零点的90s后，才能收到当天最新的图片。在每天的 00:00:00 至 00:01:30 之间，您调用此接口返回的仍然是前一天的图片。
 
@@ -276,15 +273,11 @@ CDN建议的缓存设置如下：
 
 ###### 4.2.3.1 评论系统
 
-请在 `detail.js` 中修改评论系统 Valine 的信息：
+本站使用Artalk作为评论系统，需另行部署。
 
-参考 [Valine 官方文档](https://valine.js.org/)
+若部署Artalk后不知如何引入该项目中，请联系我的邮箱：nxingcloud@163.com
 
-```
-appId: '********'
-appKey: '********'
-```
-
+若需要无后台评论系统可移步[原作者](https://github.com/androidmumo/Bing-upyun)参考Valine评论系统的使用。 
 
 
 ###### 4.2.3.2 域名
@@ -302,4 +295,4 @@ js/main.js
 替换方法：
 
 1. 全局搜索替换，将 `https://bing.nxingcloud.co/` 替换为您部署的域名。
-2. 将 `js/main.js` 中的 `https://upyuns.mcloc.cn/` 替换为您的又拍云存储加速域名。
+2. 将 `js/main.js` 中的 `https://ubing.nxingcloud.co/` 替换为您的又拍云存储加速域名。
