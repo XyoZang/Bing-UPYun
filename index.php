@@ -291,8 +291,8 @@ if ($imgdate){
                     <div class="card-header">本站信息</div>
                     <div class="card-body">
                         <h5 class="card-title">Website information</h5>
-                        <p class="links" class="card-text">本站建立日期为2022-09-09，采用又拍云作为云存储，在小马奔腾的源码基础上进行了二次开发，修改详情请移步"<a href="/about/">关于本站</a>"</p><br>
-                        <p class="links" class="card-text"><a href="/about/" class="card-link">提点建议</a></p>
+                        <p class="links" class="card-text">本站建立日期为2022-09-09，采用又拍云作为云存储，在<a href="https://github.com/androidmumo/Bing-upyun/">小马奔腾的源码</a>基础上进行了二次开发，修改详情请移步"<a href="/about/">关于本站</a>"</p><br>
+                        <p class="links" class="card-text"><a href="/about/">提点建议</a></p>
                     </div>
                 </div>
 
@@ -301,7 +301,7 @@ if ($imgdate){
                     <div class="card-body">
                         <h5 class="card-title">Links</h5>
                         <p class="links" class="card-text"><a href="https://nxingcloud.co/">南星的博客</a></p>
-                        <p class="links" class="card-text"><a href="https://blog.mcloc.cn/" class="card-link">小马奔腾的博客</a></p>
+                        <p class="links" class="card-text"><a href="https://blog.mcloc.cn/">小马奔腾的博客</a></p>
                     </div>
                 </div>
 
