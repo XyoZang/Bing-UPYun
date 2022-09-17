@@ -9,6 +9,9 @@ Copyright © 2020 by m@mcloc.cn
 
 $config = include 'config.php';
 
+// 引入邮箱类
+include 'mail.php';
+
 //初始化又拍云信息
 $bucketName = $config['bucketName'];
 $operatorName = $config['operatorName'];
@@ -59,6 +62,11 @@ if ($conn2->query($sql2) === TRUE) {
 //获取图片链接
 $json_content = file_get_contents('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN');
 $json_content = json_decode($json_content, true);
+if ($json_content) {
+    echo "图片链接获取成功<br>";
+} else {
+    echo "图片链接获取失败，请重试<br>";
+}
 $imgurl = 'https://cn.bing.com' . $json_content['images'][0]['url'];
 
 //获取其他信息
@@ -67,6 +75,12 @@ $bingImageName = $json_content["images"][0]["urlbase"];
 $bingImageName = preg_replace("/^\/th\?id=OHR\./", "", $bingImageName);
 $bingHsh = $json_content["images"][0]["hsh"];
 $bingDid = $json_content["images"][0]["enddate"];
+
+if ($bingDid && $bingHsh && $bingImageName && $bingTitle){
+    echo "图片标题，名称，哈希值，保存日期获取成功<br>";
+}else {
+    echo "图片其他信息获取失败，请重试<br>";
+}
 
 //获取当前时间
 $dateToday = gmdate('d-M-Y', time() + 3600 * 8);
@@ -271,3 +285,7 @@ if ($result3->num_rows > 0) {
         echo "Error: " . $sql4 . "<br>" . $conn2->error;
     }
 }
+send_email($to="z1304242002@163.com",$subject='必应每日一图',$content='今日图片抓取成功！');
+
+?>
+
