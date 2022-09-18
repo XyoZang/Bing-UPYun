@@ -12,6 +12,11 @@ $config = include 'config.php';
 // 引入邮箱类
 include 'mail.php';
 
+//初始化邮件发送信息及收件人
+$mailReceiver = $config['mailReceiver'];
+$mailSubject = $config['mailSubject'];
+$mailContent = $config['mailContent'];
+
 //初始化又拍云信息
 $bucketName = $config['bucketName'];
 $operatorName = $config['operatorName'];
@@ -29,8 +34,10 @@ $mysqlDbname = $config['mysqlDbname'];
 $conn2 = mysqli_connect($mysqlHost, $mysqlUsername, $mysqlPassword, $mysqlDbname);
 if ($conn2->connect_error) {
     die("数据库连接失败: " . $conn2->connect_error);
+    $mailContent[] = "数据库连接失败<br>";
 } else {
-    echo "数据库连接成功<br>";
+    // echo "数据库连接成功<br>";
+    $mailContent[] = "数据库连接成功<br>";
 }
 
 //检测数据库/表是否存在---创建数据库/表
@@ -53,9 +60,11 @@ $sql2 = "CREATE TABLE IF NOT EXISTS `bing_tbl`(
 // $retval1 = mysqli_query($conn1, $sql1);
 // mysqli_close($conn1);
 if ($conn2->query($sql2) === TRUE) {
-    echo "数据表 bing_tbl 连接成功<br>";
+    // echo "数据表 bing_tbl 连接成功<br>";
+    $mailContent[] = "数据表 bing_tbl 连接成功<br>";
 } else {
-    echo "创建数据表错误: " . $conn2->error;
+    // echo "创建数据表错误: " . $conn2->error;
+    $mailContent[] = "创建数据表错误";
 }
 //数据库准备完成
 
@@ -63,9 +72,11 @@ if ($conn2->query($sql2) === TRUE) {
 $json_content = file_get_contents('https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN');
 $json_content = json_decode($json_content, true);
 if ($json_content) {
-    echo "图片链接获取成功<br>";
+    // echo "图片链接获取成功<br>";
+    $mailContent[] = "图片链接获取成功<br>";
 } else {
-    echo "图片链接获取失败，请重试<br>";
+    // echo "图片链接获取失败，请重试<br>";
+    $mailContent[] = "图片链接获取失败，请重试<br>";
 }
 $imgurl = 'https://cn.bing.com' . $json_content['images'][0]['url'];
 
@@ -77,9 +88,11 @@ $bingHsh = $json_content["images"][0]["hsh"];
 $bingDid = $json_content["images"][0]["enddate"];
 
 if ($bingDid && $bingHsh && $bingImageName && $bingTitle){
-    echo "图片标题，名称，哈希值，保存日期获取成功<br>";
+    // echo "图片标题，名称，哈希值，保存日期获取成功<br>";
+    $mailContent[] = "图片标题，名称，哈希值，保存日期获取成功<br>";
 }else {
-    echo "图片其他信息获取失败，请重试<br>";
+    // echo "图片其他信息获取失败，请重试<br>";
+    $mailContent[] = "图片其他信息获取失败<br>";
 }
 
 //获取当前时间
@@ -102,9 +115,17 @@ function base64EncodeImage($image_file)
     $image_data = fread(fopen($image_file, 'r'), filesize($image_file));
     $base64_image = 'data:' . $image_info['mime'] . ';base64,' . chunk_split(base64_encode($image_data));
     // $base64_image = chunk_split(base64_encode($image_data));
+    if (chunk_split(base64_encode($image_data))) {
+        // echo "Base64编码获取成功<br>";
+        global $mailContent;
+        $mailContent[] = "Base64编码获取成功<br>";
+    } else{
+        // echo "Base64编码获取失败";
+        global $mailContent;
+        $mailContent[] = "Base64编码获取失败<br>";
+    }
     return $base64_image;
 }
-
 
 //保存图片函数
 function saveImage($image_name, $url_path)
@@ -115,7 +136,16 @@ function saveImage($image_name, $url_path)
     ob_end_clean();
     //$image_name就是要保存到什么路径,默认只写文件名的话保存到根目录
     $fp = fopen($image_name, 'w'); //保存的文件名称用的是链接里面的名称
-    fwrite($fp, $img);
+    
+    if (fwrite($fp, $img)){
+        // echo substr($image_name, 4) . "保存到本地成功<br>";
+        global $mailContent;
+        $mailContent[] = substr($image_name, 4) . "保存到本地成功<br>";
+    } else {
+        // echo substr($image_name, 4) . "保存到本地失败<br>";
+        global $mailContent;
+        $mailContent[] = substr($image_name, 4) . "保存到本地失败<br>";
+    }
     fclose($fp);
 }
 
@@ -155,9 +185,16 @@ function upImage($bucketName, $operatorName, $operatorPwd, $localFilePath, $upFi
     $result = curl_exec($ch);
     if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
         //"上传成功"
+        // echo substr($localFilePath, 4) . "上传至又拍云成功<br>";
+        global $mailContent;
+        $mailContent[] = substr($localFilePath, 4) . "上传至又拍云成功<br>";
     } else {
         $errorMessage = sprintf("UPYUN API ERROR:%s", $result);
-        echo $errorMessage;
+        // echo $errorMessage;
+        // echo substr($localFilePath, 4) . "上传至又拍云失败<br>";
+        global $mailContent;
+        $mailContent[] = $errorMessage;
+        $mailContent[] = substr($localFilePath, 4) . "上传至又拍云失败<br>";
     }
     curl_close($ch);
 }
@@ -269,9 +306,11 @@ if ($result3->num_rows > 0) {
     $sql5 = "UPDATE bing_tbl SET bing_title='$bingTitle', bing_imgurl='$bingImgUrl', bing_imgurlcom_25='$bingImgUrlCom25', bing_imgurluhd='$bingImgUrlUhd', bing_imgname='$bingImageName', bing_hsh='$bingHsh', submission_date='$dateToday', submission_fulldate='$dateTodayFull', bing_imgbase64='$imgBase64', other='0', bing_did='$bingDid'
     WHERE bing_did=$bingDid";
     if ($conn2->query($sql5) === TRUE) {
-        echo "记录更新成功";
+        // echo "记录更新成功";
+        $mailContent[] = "记录更新成功<br>" . '<br>bing_title=<br>' . $bingTitle . '<br>bing_imgurl=<br>' .$bingImgUrl . '<br>bing_imgurlcom_25=<br>'. $bingImgUrlCom25 . '<br>bing_imgurluhd=<br>' . $bingImgUrlUhd . '<br>bing_imgname=<br>' . $bingImageName . '<br>bing_hsh=<br>' . $bingHsh . '<br>submission_date=<br>' . $dateToday . '<br>submission_fulldate=<br>' . $dateTodayFull . '<br>bing_imgbase64=<br>' . substr($imgBase64, 0, 80) . '<br>bing_did=<br>' . $bingDid;
     } else {
-        echo "Error: " . $sql5 . "<br>" . $conn2->error;
+        // echo "记录更新失败！<br>Error: " . $sql5 . "<br>" . $conn2->error;
+        $mailContent[] = "记录更新失败！<br>Error: " . $sql5 . "<br>" . $conn2->error;
     }
 } else {
     //插入数据
@@ -280,12 +319,15 @@ if ($result3->num_rows > 0) {
         "VALUES " .
         "('$bingTitle','$bingImgUrl','$bingImgUrlCom25','$bingImgUrlUhd','$bingImageName','$bingHsh','$dateToday','$dateTodayFull','$imgBase64','0','$bingDid')";
     if ($conn2->query($sql4) === TRUE) {
-        echo "新记录插入成功";
+        // echo "新记录插入成功";
+        $mailContent[] = "新纪录插入成功<br>" . '<br>bing_title=<br>' . $bingTitle . '<br>bing_imgurl=<br>' .$bingImgUrl . '<br>bing_imgurlcom_25=<br>'. $bingImgUrlCom25 . '<br>bing_imgurluhd=<br>' . $bingImgUrlUhd . '<br>bing_imgname=<br>' . $bingImageName . '<br>bing_hsh=<br>' . $bingHsh . '<br>submission_date=<br>' . $dateToday . '<br>submission_fulldate=<br>' . $dateTodayFull . '<br>bing_imgbase64=<br>' . substr($imgBase64, 0, 80) . '<br>bing_did=<br>' . $bingDid;
     } else {
-        echo "Error: " . $sql4 . "<br>" . $conn2->error;
+        // echo "记录更新失败！<br>Error: " . $sql4 . "<br>" . $conn2->error;
+        $mailContent[] = "记录更新失败！<br>Error: " . $sql4 . "<br>" . $conn2->error;
     }
 }
-send_email($to="z1304242002@163.com",$subject='必应每日一图',$content='今日图片抓取成功！');
+send_email($to=$mailReceiver, $subject=$mailSubject, $content=$mailContent);
+print_r($mailContent);
 
 ?>
 

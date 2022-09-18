@@ -11,8 +11,8 @@
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 function send_email($to="",$subject='',$content='<h1>Hello World</h1>'){
     // 引入PHPMailer的核心文件
@@ -25,9 +25,9 @@ function send_email($to="",$subject='',$content='<h1>Hello World</h1>'){
     $mailUsername = $config['mailUsername'];
     $mailPassword = $config['mailPassword'];
     $mailFromName = $config['mailFromName'];
-    $mailReciDress = $config['mailReciDress'];
     $mailHost = $config['mailHost'];
     $mailPort = $config['mailPort'];
+    
     // 实例化PHPMailer核心类
     $mail = new PHPMailer(true);
 
@@ -42,56 +42,51 @@ function send_email($to="",$subject='',$content='<h1>Hello World</h1>'){
         //$mail->Debugoutput = 'html';
 
         //客户端配置---Server settings
-        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP(); // 使用smtp鉴权方式发送邮件
         $mail->SMTPAuth = true; // smtp需要鉴权 这个必须是true
         $mail->Host = $mailHost; // 链接邮箱的服务器地址
         $mail->Username = $mailUsername; // smtp登录的账号 QQ邮箱即可
         $mail->Password = $mailPassword; // smtp登录的密码 使用生成的授权码
         $mail->SMTPSecure = 'ssl'; // 设置使用ssl加密方式登录鉴权
-        //$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
         $mail->Port = $mailPort; // 设置ssl连接smtp服务器的远程服务器端口号
         $mail->CharSet = 'UTF-8'; // 设置发送的邮件的编码
 
         //邮件账户设置---Recipients
-        //$mail->FromName = $mailFromName; // 设置发件人昵称 显示在收件人邮件的发件人邮箱地址前的发件人姓名
-        //$mail->From = $mailUsername; // 设置发件人邮箱地址 同登录账号
-        $mail->setFrom($mailUsername, $mailFromName);
-        // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
-        $mail->addAddress($mailReciDress);               //Name is optional
+        $mail->setFrom($mailUsername, $mailFromName); // 设置发件人邮箱地址与昵称 显示在收件人邮件的发件人邮箱地址前的发件人姓名
         $mail->addReplyTo($mailUsername, 'Information');
         
         // 设置收件人邮箱地址
-        // if(is_array($to))
-        // {
-        //     foreach($to as $v)
-        //     {
-        //         $mail->addAddress($v);
-        //     }
-        // }else{
-        //     $mail->addAddress($to);
-        // }
-        //$mail->addAddress('1234567890@qq.com');
-        // 添加多个收件人 则多次调用方法即可
+        // $mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+        // $mail->addAddress($mailReciDress);               //Name is optional
+        if(is_array($to))
+        {
+            foreach($to as $v)
+            {
+                $mail->addAddress($v);
+            }
+        }else{
+            $mail->addAddress($to);
+        }
 
         //邮件内容---Content
         $mail->isHTML(true); // 邮件正文是否为html编码 注意此处是一个方法
         $mail->Subject = $subject; // 添加该邮件的主题
-        $email=$content; // 添加邮件正文
-        $mail->Body = $email;
-        // 为该邮件添加附件
-        //$mail->addAttachment('./example.pdf');
-        //附加信息，可以省略
-        $mail->AltBody = "This is the body in plain text for non-HTML mail clients"; 
-        // 发送邮件 返回状态
+        // 添加邮件正文
+        if(is_array($content))
+        {
+            $allcontent = implode('<br>', $content);  // 将一维数组以<br>分隔组合成一个字符串
+            $mail->Body = $allcontent;
+        }else{
+            $mail->Body = $content;
+        }
         
-        echo $mailUsername;
-        echo $mailPassword;
-        echo $mailFromName;
-        echo $mailReciDress;
-        echo $mailHost;
-        echo $mailPort;
-    
+        //附加信息，可以省略
+        //$mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+        
+        //附件
+        //$mail->addAttachment('./example.pdf'); 
+        
+        // 发送邮件 返回状态
         $mail->send();
         echo '<br>邮件发送成功！';
     } catch (Exception $e) {
