@@ -38,10 +38,10 @@
 - 前后端分离，后端接口可单独部署
 - 又拍云存储加速
 - 丰富的接口功能
+- 每日抓取结果邮件通知
 
 
-
-<img src="./img/screenshot-bing.mcloc.cn-2020.09.09-20_19_38.jpg" alt="screenshot-bing.mcloc.cn-2020.09.09-20_19_38" style="zoom:50%;" />
+<img src="https://cdn.nxingcloud.co/images/posts/bing/screenshot-bing-033efc0997daaf28c6b981124e87d470-a8b568.jpg" alt="screenshot-bing" style="zoom:50%;" />
 
 
 
@@ -69,13 +69,13 @@ https://bing.nxingcloud.co/
 
 ##### 2.2 前端效果（首页）
 
-<img src="./img/screenshot-bing.mcloc.cn-2020.09.09-18_59_14.jpg" alt="screenshot-bing.mcloc.cn-2020.09.09-18_59_14" style="zoom:50%;" />
+<img src="https://cdn.nxingcloud.co/images/posts/bing/screenshot-bing -2--420b713e3f8f1f2d3f623853a15bd279-00730a.jpg" alt="screenshot-bing" style="zoom:50%;" />
 
 
 
 ##### 2.3 前端特性
 
-用到的库或者框架有：Bootstrap4、jQuery1.11.0、Artalk、[progressive-image](https://github.com/ccforward/progressive-image)。
+用到的库或者框架有：Bootstrap4、jQuery1.11.0、PHPMailer、Artalk、[progressive-image](https://github.com/ccforward/progressive-image)。
 
 - 响应式
 
@@ -84,6 +84,8 @@ https://bing.nxingcloud.co/
 - 图片渐进加载（模糊到清晰）
 
 - Artalk评论系统
+
+- PHPMailer邮件发送库
 
   
 
@@ -129,7 +131,7 @@ https://bing.nxingcloud.co/
 |     bing_title      |         图片标题          |                                  |
 |     bing_imgurl     |    1920×1080 图片地址     |                                  |
 |  bing_imgurlcom_25  |     480×270 图片地址      |                                  |
-|   bing_imgurluhd    |    UHD超高清 图片地址     | 注意：分辨率不固定、无又拍云加速 |
+|   bing_imgurluhd    |    UHD超高清 图片地址     | 注意：高清原图、分辨率不固定、无又拍云加速 |
 |    bing_imgname     |     图片文件原始名字      |  注意：与又拍云中的文件名不一致  |
 |      bing_hsh       |          哈希值           |                                  |
 |   submission_date   |       提交保存时间        |                                  |
@@ -187,12 +189,13 @@ https://bing.nxingcloud.co/api
     ├── api
     │   ├── php
     │   │	├── bing		// 图片缓存文件夹
+    │    │  ├── phpmailer   // 邮件依赖库文件夹
     │   │	├── config.php	// 配置文件
     │   │   └── index.php	// 后台图片处理程序
     │   └── index.php		// 图片调用接口
     ├── css
-    │   ├── about
-    │   ├── fonts
+    │   ├── about           // 关于界面文件夹
+    │   ├── fonts           // 关于界面资源文件夹
     │   ├── detail.css		// 详情页样式表
     │   ├── index.css		// 首页样式表
     │   └── main.css		// 主样式表
@@ -238,6 +241,20 @@ $config['mysqlHost']     = '********';  //MySQL数据库主机名
 $config['mysqlUsername'] = '********';  //MySQL数据库用户名
 $config['mysqlPassword'] = '********';  //MySQL数据库密码
 $config['mysqlDbname']   = '********';  //MySQL数据库名
+
+// 邮箱配置信息
+// **********发件人配置***************
+$config['mailUsername']  = '********'; //邮箱发件人账号
+$config['mailPassword']  = '********'; //邮箱发件人SMTP密码
+$config['mailFromName']  = '********'; //邮箱发件人昵称
+$config['mailHost']      = '********'; //邮箱服务器
+$config['mailPort']      = '********'; //邮箱端口号，以163为例，若不使用SSL加密方式则端口号为25，否则为465
+
+// ***********发件内容及收件人配置******
+$config['mailReceiver']  = '********'; //可设置单个收件人，若需多个收件人则以数组['***', '***']形式。
+$config['mailSubject']   = '必应每日一图';
+$config['mailContent']   = ["开始抓取今日图片···<br>"];
+
 ```
 
 
@@ -255,6 +272,13 @@ $config['mysqlDbname']   = '********';  //MySQL数据库名
 本程序不会常驻后台，需要定时访问后台图片处理程序所在URL以触发程序执行（每天访问一次）。
 
 定时任务访问URL： `网站根目录/api/php/index.php` 或 `网站根目录/api/php`
+
+为保证安全，使用宝塔部署的情况可以将/api/php/目录设入禁止访问名单，通过定时执行shell脚本的方式触发程序执行
+
+```shell
+cd /网站根目录/api/php/
+php index.php
+```
 
 接口调用URL： `网站根目录/api/index.php` 或 `网站根目录/api`
 
@@ -309,11 +333,11 @@ CDN建议的缓存设置如下：
 
 ###### 4.2.3.2 域名
 
-为了最快的响应速度，Bing-upyun 的前端页面为纯静态，请查找并替换以下文件中的域名：
+请查找并替换以下文件中的域名：
 
 ```
-index.html
-html/detail.html
+index.php
+detail/index.html
 js/detail.js
 js/index.js
 js/main.js
