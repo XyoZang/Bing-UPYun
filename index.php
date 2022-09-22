@@ -46,6 +46,7 @@ if ($imgdate){
     <script async defer data-website-id="6264fbba-f3be-4116-bad8-f1a94d822ab9" src="https://uma.nxingcloud.co/xuezm.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3663794_n7525ypef3n.css">
 </head>
 
 <body>
@@ -99,12 +100,10 @@ if ($imgdate){
                         关于
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!--
-                        <a class="dropdown-item" href="https://www.mcloc.cn/"><i class="iconfont icon-weibiaoti1"></i>
-                            小马奔腾的作品集</a>
-                        -->
                         <a class="dropdown-item" href="https://nxingcloud.co/"><i class="iconfont icon-t"></i>
                             南星的博客</a>
+                        <a class="dropdown-item" href="/docs/"><i class="iconfont icon-fapiaojilu"></i>
+                            API接口文档</a>
                         <a class="dropdown-item" href="https://github.com/ZhangXQA/Bing-upyun"><i
                                 class="iconfont icon-github"></i> GitHub--本站源码</a>
                         <div class="dropdown-divider"></div>
@@ -185,8 +184,8 @@ if ($imgdate){
             <?php
             // 获取程序运行时间。
             $Days=ceil(($d1-$d2)/3600/24) + 1;
-            $pmax = floor($Days/12);
-            if ($Days%12 != 0){
+            $pmax = floor($Days/9);
+            if ($Days%9 != 0){
                 $pmax += 1;
             }
             if ($p > $pmax || $p < 1) // 若跳转页码不在现有范围内，则转至404页面
@@ -194,17 +193,17 @@ if ($imgdate){
                 header('content-type:text/html;charset=utf-8');
                 echo '<script>window.location.href="/404.html"</script>';
             }
-            elseif ($p == $pmax && ($Days%12)!=0) // 若页数为最后一页且有余数,则该页面只显示余数个数的图片
+            elseif ($p == $pmax && ($Days%9)!=0) // 若页数为最后一页且有余数,则该页面只显示余数个数的图片
             {
-                $imax = $Days%12-1;
+                $imax = $Days%9-1;
             }else{
-                $imax = 11;
+                $imax = 8;
             }
             
             //展示(imax+1)个图片
             for ($i=0; $i<=$imax; $i++)
             {
-                $pnumber = ($p-1) * 12 + $i;
+                $pnumber = ($p-1) * 9 + $i;
                 $picnumber = (string)$pnumber;
                 $picjs = "pic-js-son";
                 $picid = $picjs . $picnumber; // "pic-js-son0-11"

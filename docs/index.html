@@ -16,10 +16,10 @@
     <link href="../lib/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../lib/progressive-image.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2042758_2fi5tvz8vl4.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3663794_n7525ypef3n.css">
     <script async defer data-website-id="6264fbba-f3be-4116-bad8-f1a94d822ab9" src="https://uma.nxingcloud.co/xuezm.js"></script>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3663794_n7525ypef3n.css">
     <style>
         i.serif {
             text-transform: lowercase;
@@ -109,26 +109,148 @@
     </nav>
     <section class="content" style="overflow:auto;">
         <article class="markdown-section" id="main">
-            <h1  style="text-align: center;">
-                <a href="/" ><i class="icon icon-bing"></i><span>关于本站</span></a>
-            </h1>
-            <p style="text-align: center;"><i class="serif">Bing</i> 必应每日一图，领略世界之美</p>
-            <br>
-            <p>Hi! 这里是<a href="https://nxingcloud.co" target="_blank">@南星</a>搭建的<a href="https://github.com/ZhangXQA/Bing-upyun" target='_blank'>Bing 壁纸</a>项目</p>
-            <p><a href="https://github.com/androidmumo/Bing-upyun" target="_blank">本站的源码</a>来自作者<a href="https://blog.mcloc.cn/" target="_blank">小马奔腾</a>，很可惜原作者的版本已经停止维护。</p>
-            <p>考虑到自己恰好需要用到必应壁纸，就在作者源码的基础上进行了二次开发，着手搭建成了现在的样子。</p>
-            <p>由于本站刚刚构建完毕，初步运行壁纸比较少，每日会新增一张图。</p>
-            <p>本网站所有的图片均上传至又拍云存储，可通过又拍云链接或本站服务器链接下载。HD下载方式默认分辨率均为1920x1080，UHD下载方式为服务器中转至必应官方超清原图下载，无固定分辨率（一般均高于1080P）。若有不同分辨率需求请自行下载图片后修改。</p>
-            <p>本站点修改了部分源代码，更新了以下功能：</p>
-            <p>1、添加API的random参数，实现随机获取一张图片。</p>
-            <p>2、增加了分页功能与翻页按钮，展示本站所有的图片。</p>
-            <p>3、增加了获取指定日期的图片的功能。</p>
-            <p>4、增加详情页面点击图片跳转大图功能</p>
-            <p>5、修复了下载文件时的图片名称问题。</p>
-            <p>6、更换本站评论系统为Artalk。</p>
-            <p>7、前端界面略有更改。</p>
-            <p>8、修复了若干BUG。</p>
-            <p>有何意见或建议可在下方评论区留言。</p>
+            <h2 id="接口文档">接口文档</h2>
+            <table>
+            <thead>
+            <tr>
+            <th align="center">参数名</th>
+            <th align="center">是否必须</th>
+            <th align="center">参数</th>
+            <th align="center">返回结果</th>
+            <th align="center">备注</th>
+            </tr>
+            </thead>
+            <tbody><tr>
+            <td align="center">type</td>
+            <td align="center">否</td>
+            <td align="center">json或其他</td>
+            <td align="center">json数据</td>
+            <td align="center">参数除json外，其余都无效（输出图片）</td>
+            </tr>
+            <tr>
+            <td align="center">blur</td>
+            <td align="center">否</td>
+            <td align="center">5/15/25</td>
+            <td align="center">返回高斯模糊程度不同的图片</td>
+            <td align="center">只支持5/15/25三个等级</td>
+            </tr>
+            <tr>
+            <td align="center">gray</td>
+            <td align="center">否</td>
+            <td align="center">true/false</td>
+            <td align="center">灰阶图片/正常色彩图片</td>
+            <td align="center">-</td>
+            </tr>
+            <tr>
+            <td align="center">day</td>
+            <td align="center">否</td>
+            <td align="center">数字n（大于等于0的正整数）</td>
+            <td align="center">n天前的图片</td>
+            <td align="center">n的范围取决于程序运行天数</td>
+            </tr>
+            <tr>
+            <td align="center">thumbnail</td>
+            <td align="center">否</td>
+            <td align="center">1/25</td>
+            <td align="center">16×9像素或以25%比例缩放的缩略图</td>
+            <td align="center">只支持1/25两个等级，16×9像素的缩略图用来实现前端图片的渐进加载</td>
+            </tr>
+            <tr>
+            <td align="center">random</td>
+            <td align="center">否</td>
+            <td align="center">true/false</td>
+            <td align="center">-</td>
+            <td align="center">随机返回自网站开始运行至当前时间任意一天的图片</td>
+            </tr>
+            </tbody></table>
+            <p>注意：<code>day</code> 和 <code>random</code> 两者之间只能选择一个参数，这两者参数和其余参数可以组合使用，除此之外的其他参数之间暂不支持组合使用。例如，不能返回灰阶的高斯模糊图片，可以返回n天前的高斯模糊图片。</p>
+            <h2 id="json数据格式：">json数据格式：</h2>
+            <pre><code>{
+    &quot;bing_id&quot;: &quot;21&quot;,
+    &quot;bing_title&quot;: &quot;日落时分中央海岸入口海滩上的救生员小屋，澳大利亚新南威尔士州 (© Yury Prokopenko/Getty Images)&quot;,
+    &quot;bing_imgurl&quot;: &quot;https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020.jpg&quot;,
+    &quot;bing_imgurlcom_25&quot;: &quot;https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020-compress_25.jpg&quot;,
+    &quot;bing_imgurluhd&quot;: &quot;https://cn.bing.com/th?id=OHR.LifeguardEntrance_ZH-CN7394984988_UHD.jpg&quot;,
+    &quot;bing_imgname&quot;: &quot;LifeguardEntrance_ZH-CN7394984988&quot;,
+    &quot;bing_hsh&quot;: &quot;a8712ff7ed3690123f96c2f95830b9f6&quot;,
+    &quot;submission_date&quot;: &quot;15-Sep-2020&quot;,
+    &quot;submission_fulldate&quot;: &quot;15-Sep-2020 00:01:01&quot;,
+    &quot;bing_imgbase64&quot;: &quot;data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsK\r\nCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQU\r\nFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAJABADAREA\r\nAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAgMHCP/EACUQAAEEAQMCBwAAAAAAAAAAAAECAwQF\r\nEQAGEgcxNDdhc3Sxs//EABcBAAMBAAAAAAAAAAAAAAAAAAMFBgT/xAAnEQABAwIEBQUAAAAAAAAA\r\nAAABAAIDESEEEnGREzI0grExYXKBof/aAAwDAQACEQMRAD8ALpfa2VFBdK26liOlAdczeMFsN8iA\r\noBSVcRkEA5HbQ8bNhwQDMAdKn8KosCcrXF0VR8qDYhJuJx3Nf2KLawiSYrLCVsR2JraXIzKSAQt5\r\nZwvuMEJHoDjS5mJcM2V7aXob1P0AKblbomwSPdx2kelqiw9yTfZZz2L5Ebz+cz9alJ+rj0Q4eil1\r\nCpEjwF57VZ+Wlw5m93lNhySdvhf/2Q==\r\n&quot;,
+    &quot;other&quot;: &quot;0&quot;,
+    &quot;bing_did&quot;: &quot;20200915&quot;
+}</code></pre>
+            <table>
+            <thead>
+            <tr>
+            <th align="center">字段</th>
+            <th align="center">值</th>
+            <th align="center">备注</th>
+            </tr>
+            </thead>
+            <tbody><tr>
+            <td align="center">bing_id</td>
+            <td align="center">ID</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">bing_title</td>
+            <td align="center">图片标题</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">bing_imgurl</td>
+            <td align="center">1920×1080 图片地址</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">bing_imgurlcom_25</td>
+            <td align="center">480×270 图片地址</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">bing_imgurluhd</td>
+            <td align="center">UHD超高清 图片地址</td>
+            <td align="center">注意：高清原图、分辨率不固定、无又拍云加速</td>
+            </tr>
+            <tr>
+            <td align="center">bing_imgname</td>
+            <td align="center">图片文件原始名字</td>
+            <td align="center">注意：与又拍云中的文件名不一致</td>
+            </tr>
+            <tr>
+            <td align="center">bing_hsh</td>
+            <td align="center">哈希值</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">submission_date</td>
+            <td align="center">提交保存时间</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">submission_fulldate</td>
+            <td align="center">详细提交保存时间</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">bing_imgbase64</td>
+            <td align="center">16px×9px 缩略图base64编码</td>
+            <td align="center">一般用于图片渐进加载</td>
+            </tr>
+            <tr>
+            <td align="center">other</td>
+            <td align="center">保留字段</td>
+            <td align="center"></td>
+            </tr>
+            <tr>
+            <td align="center">bing_did</td>
+            <td align="center">唯一图片ID</td>
+            <td align="center">格式为保存日期</td>
+            </tr>
+            </tbody></table>
+            <h2 id="api接口">API接口</h2>
+            <pre><code>https://bing.nxingcloud.co/api/</code></pre>
+            <p>此接口为<a href="https://nxingcloud.co/">南星&amp;NXING</a>免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。<br></p>
             <p style="text-align:right">2022-09-09 By <a href="https://nxingcloud.co" target="_blank">南星&NXING</a></p>
             <link href="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-2a1f8b36.css" rel="stylesheet">
             <script src="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-b5b3a442.js"></script>
