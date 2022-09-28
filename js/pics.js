@@ -1,88 +1,83 @@
 const $dynamicGallery = document.getElementById("dynamic-gallery-demo");
 
-$dynamicGallery.addEventListener("lgInit", (event) => {
-  const pluginInstance = event.detail.instance;
-  setVimeoThumbnails(pluginInstance);
-});
+var count = 0;
+var GalleryEl = new Array();
 
-dynamicGallery = window.lightGallery($dynamicGallery, {
-  licenseKey: 'E7523834-34D04F31-885DCD0D-F02C08A8',
-  dynamic: true,
-  plugins: [lgZoom, lgVideo, lgThumbnail],
-  dynamicEl: [
-    {
-      src:
-        "https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1400&q=80",
-      responsive:
-        "https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=480&q=80 480, https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80 800",
-      thumb:
-        "https://images.unsplash.com/photo-1609342122563-a43ac8917a3a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=240&q=80",
-      subHtml: `<div class="lightGallery-captions">
-                <h4>Photo by <a href="https://unsplash.com/@brookecagle">Brooke Cagle</a></h4>
-                <p>Description of the slide 1</p>
-            </div>`
-    },
-    {
-      video: {
-        source: [
-          {
-            src: "https://www.lightgalleryjs.com//videos/video1.mp4",
-            type: "video/mp4"
-          }
-        ],
-        attributes: { preload: false, controls: true }
-      },
-      thumb:
-        "https://www.lightgalleryjs.com//images/demo/html5-video-poster.jpg",
-      subHtml: `<div class="lightGallery-captions">
-                <h4>Photo by <a href="https://unsplash.com/@brookecagle">Brooke Cagle</a></h4>
-                <p>Description of the slide 2</p>
-            </div>`
-    },
-    {
-      src:
-        "https://images.unsplash.com/photo-1477322524744-0eece9e79640?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
-      responsive:
-        "https://images.unsplash.com/photo-1477322524744-0eece9e79640?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80 480, https://images.unsplash.com/photo-1477322524744-0eece9e79640?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800",
-      thumb:
-        "https://images.unsplash.com/photo-1477322524744-0eece9e79640?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=240&q=80"
-    },
-    {
-      src: "https://vimeo.com/2057107"
-    },
-    {
-      src: "//www.youtube.com/watch?v=egyIeygdS_E",
-      poster: "https://img.youtube.com/vi/egyIeygdS_E/maxresdefault.jpg",
-      thumb: "https://img.youtube.com/vi/egyIeygdS_E/maxresdefault.jpg"
-    },
-    {
-      src: "//vimeo.com/112836958"
-    }
-  ]
-});
+//计算程序运行时间，即共有多少张图片 
+var start_str = ("2022/09/09");//一般得到的时间的格式都是：yyyy-MM-dd hh24:mi:ss，所以我就用了这个做例子，是/的格式，就不用replace了。  
+var start_date = new Date(start_str);//将字符串转化为时间    
+var end_date = new Date();  
+var num = (end_date-start_date)/(1000*3600*24);//求出两个时间的时间差，这个是天数  
+var days = parseInt(Math.ceil(num));//转化为整天（小于零的话剧不用转了）
+console.log("days="+days);
 
-// Fetch vimeo thumbnails and update gallery
-async function setVimeoThumbnails(dynamicGallery) {
-  for (let i = 0; i < dynamicGallery.galleryItems.length; i++) {
-    const item = dynamicGallery.galleryItems[i];
-    const slideVideoInfo = item.__slideVideoInfo || {};
-    if (slideVideoInfo.vimeo) {
-      const response = await fetch(
-        'https://vimeo.com/api/oembed.json?url=' +
-        encodeURIComponent(item.src),
-      );
-      const vimeoInfo = await response.json();
-      dynamicGallery.$container
-        .find('.lg-thumb-item')
-        .eq(i)
-        .find('img')
-        .attr('src', vimeoInfo.thumbnail_url);
-    }
-  }
+function getTitle(day) {
+  let Title;
+  $.ajax({
+    type: "GET",
+    async: false,
+    url: "https://bing.nxingcloud.co/api/",
+    data: "type=json&day=" + day,
+    success: function (res) {
+      Title = $.parseJSON(res).bing_title;
+    },
+  });
+  return Title;
 }
 
+function GetPics(Element)
+{
+  for (var i = 0; i < 9; i++) {
+    day = count + i;
+    if (day<days){
+      console.log("day="+day);
+      data = {
+        src: "https://bing.nxingcloud.co/api/?day=" + day,
+        thumb:"https://bing.nxingcloud.co/api/?day=" + day + "&thumbnail=25",
+        subHtml:`<div class="lightGallery-captions">
+                  <h2>` + getTitle(day) + `</h2>
+                </div>`
+      }
+      Element.push(data);
+    } else{
+      break;
+    }
+  }
+  return Element;
+}
+
+
+// **************主进程*****************
+GetPics(GalleryEl);
+const dynamicGallery = window.lightGallery($dynamicGallery, {
+  licenseKey: 'E7523834-34D04F31-885DCD0D-F02C08A8',
+  dynamic: true,
+  plugins: [lgZoom, lgThumbnail, lgFullscreen],
+  dynamicEl: GalleryEl,
+});
+
 // Open gallery
-$dynamicGallery.addEventListener("click", () => {
+$dynamicGallery.addEventListener('click', function () {
   dynamicGallery.openGallery(0);
 });
+
+document
+  .getElementById('dynamic-gallery-demo-load-more')
+  .addEventListener('click', () => {
+    if (count<(days-9))
+    {
+      count += 9;
+      var GalleryMore = new Array();
+      GetPics(GalleryMore);
+      GalleryEl = [...GalleryEl, ...GalleryMore];
+      dynamicGallery.refresh(GalleryEl);
+
+      // To open gallery after updating slides,
+      dynamicGallery.openGallery(count);
+    } else{
+      count = 999;
+      swal({title: "没有更多图片了！",icon: "info",button: "确定",});
+    }
+});
+// ******************End-主进程*************
 

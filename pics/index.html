@@ -51,7 +51,6 @@
 
             <nav class="navbar-light bg-light mr-auto">
                 <form class="form-inline">
-                    <button type="button" class="btn btn-sm btn-info" id="dynamic-gallery-demo">画廊模式</button>
                     <button id="btnToday" class="btn btn-sm btn-info" type="button">
                         下载今日壁纸 <span class="badge badge-light">HD</span>
                     </button>
@@ -91,29 +90,8 @@
     </nav>
 
     <div id="gallery-container">
-        <!--<div id="pic-js-son0" data-day="0" class="pic-item my-3 shadow-sm rounded">-->
-        <!--    <div class="progressive">-->
-        <!--        <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?day=0&thumbnail=25"-->
-        <!--            src="https://bing.nxingcloud.co/api/?day=0&thumbnail=1" alt="">-->
-        <!--    </div>-->
-        <!--    <p class="my-2"></p>-->
-        <!--</div>-->
-        <div class="gallery-items">
-            <img src="https://bing.nxingcloud.co/api/?day=0&thumbnail=25" />
-        </div>
-        <div class="gallery-items">
-            <img src="https://bing.nxingcloud.co/api/?day=1&thumbnail=25" />
-        </div>
-        <div class="gallery-items">
-            <img src="https://bing.nxingcloud.co/api/?day=2&thumbnail=25" />
-        </div>
-        <div class="gallery-items">
-            <img src="https://bing.nxingcloud.co/api/?day=3&thumbnail=25" />
-        </div>
-        <div class="gallery-items">
-            <img src="https://bing.nxingcloud.co/api/?day=4&thumbnail=25" />
-        </div>
-    
+        <button type="button" class="btn btn-sm btn-info" id="dynamic-gallery-demo">画廊模式</button>
+        <button type="button" class="btn btn-sm btn-info" id="dynamic-gallery-demo-load-more">加载更多</button>
     </div>
     
     <footer class="container-404">
@@ -151,7 +129,9 @@
     <script src="../lib/lightgallery/plugins/zoom/lg-zoom.umd.js"></script>
     <script src="../lib/lightgallery/plugins/thumbnail/lg-thumbnail.umd.js"></script>
     <script src="../lib/lightgallery/plugins/video/lg-video.umd.js"></script>
+    <script src="../lib/lightgallery/plugins/fullscreen/lg-fullscreen.umd.js"></script>
     <script src="../js/pics.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </footer>
 </body>
 <!-- 页脚 -->
