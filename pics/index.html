@@ -51,6 +51,9 @@
 
             <nav class="navbar-light bg-light mr-auto">
                 <form class="form-inline">
+                    <button id="btnGallery" class="btn btn-sm btn-info" type="button">
+                        画廊模式
+                    </button>
                     <button id="btnToday" class="btn btn-sm btn-info" type="button">
                         下载今日壁纸 <span class="badge badge-light">HD</span>
                     </button>
@@ -88,12 +91,16 @@
             </ul>
         </div>
     </nav>
-
-    <div id="gallery-container">
-        <button type="button" class="btn btn-sm btn-info" id="dynamic-gallery-demo">画廊模式</button>
-        <button type="button" class="btn btn-sm btn-info" id="dynamic-gallery-demo-load-more">加载更多</button>
-    </div>
     
+    <div class="card">
+      <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?day=0&thumbnail=1" src="https://bing.nxingcloud.co/api/?day=0" alt="Avatar" style="width:100%">
+      <div class="container-card">
+        <button type="button" class="btn btn-gallery" id="dynamic-gallery-demo">画廊模式<span class="ripple"></span></button>
+        <hr>
+        <button type="button" class="btn btn-gallery" id="dynamic-gallery-demo-load-more">加载更多<span class="ripple"></span></button>
+      </div>
+    </div>
+
     <footer class="container-404">
         <div class="container">
             <div class="row text-center align-middle">
@@ -124,11 +131,11 @@
         </div>
     <script src="../lib/jquery-1.11.0.js"></script>
     <script src="../lib/bootstrap.min.js"></script>
+    <script src="../lib/progressive-image.js"></script>
     <script src="../js/main.js"></script>
     <script src="../lib/lightgallery/lightgallery.umd.js"></script>
     <script src="../lib/lightgallery/plugins/zoom/lg-zoom.umd.js"></script>
     <script src="../lib/lightgallery/plugins/thumbnail/lg-thumbnail.umd.js"></script>
-    <script src="../lib/lightgallery/plugins/video/lg-video.umd.js"></script>
     <script src="../lib/lightgallery/plugins/fullscreen/lg-fullscreen.umd.js"></script>
     <script src="../js/pics.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

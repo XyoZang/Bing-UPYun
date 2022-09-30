@@ -2,11 +2,11 @@
 # 轻量必应每日一图接口/前端，支持上传到又拍云调用
 
 
-> Hi! 这里是 [@南星](https://nxingcloud.co/)搭建的Bing 壁纸项目
+> Hi! 这里是 [@Xenns](https://nxingcloud.co/)搭建的Bing 壁纸项目
 >
 >本网站的源码来自[小马奔腾](https://github.com/androidmumo/Bing-upyun)。
 >
->本站点修改了部分源代码，详细更改如下：
+>本站点修改了部分源代码，并增加了一些新功能，详细更改如下：
 >
 >1、添加API的random参数，实现随机获取一张图片。
 >
@@ -24,9 +24,11 @@
 >
 >8、修复了下载文件时的图片名称显示问题。
 >
->9、添加了“关于本站”的介绍页面
+>9、添加了“关于本站”与“API文档”的介绍页面
 >
->10、增加每日图片抓取结果的邮箱通知，包含整个抓取过程
+>10、增加了画廊模式，提高观赏体验
+>
+>11、增加每日图片抓取结果的邮箱通知，包含整个抓取过程
 
 
 
@@ -38,6 +40,7 @@
 - 前后端分离，后端接口可单独部署
 - 又拍云存储加速
 - 丰富的接口功能
+- 美观的画廊模式
 - 每日抓取结果邮件通知
 
 
@@ -75,7 +78,7 @@ https://bing.nxingcloud.co/
 
 ##### 2.3 前端特性
 
-用到的库或者框架有：Bootstrap4、jQuery1.11.0、PHPMailer、Artalk、[progressive-image](https://github.com/ccforward/progressive-image)。
+用到的库或者框架有：Bootstrap4、jQuery1.11.0、PHPMailer、LightGallery、Artalk、[progressive-image](https://github.com/ccforward/progressive-image)。
 
 - 响应式
 
@@ -86,6 +89,10 @@ https://bing.nxingcloud.co/
 - Artalk评论系统
 
 - PHPMailer邮件发送库
+
+- LightGallery画廊
+
+> 注意: LightGallery并非完全开源，若需商用请联系作者购买许可证
 
   
 
@@ -112,8 +119,8 @@ https://bing.nxingcloud.co/
 {
     "bing_id": "21",
     "bing_title": "日落时分中央海岸入口海滩上的救生员小屋，澳大利亚新南威尔士州 (© Yury Prokopenko/Getty Images)",
-    "bing_imgurl": "https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020.jpg",
-    "bing_imgurlcom_25": "https://upyuns.mcloc.cn/bing/15-Sep-2020/15-Sep-2020-compress_25.jpg",
+    "bing_imgurl": "https://ubing.nxingcloud.co/bing/15-Sep-2020/15-Sep-2020.jpg",
+    "bing_imgurlcom_25": "https://ubing.nxingcloud.co/bing/15-Sep-2020/15-Sep-2020-compress_25.jpg",
     "bing_imgurluhd": "https://cn.bing.com/th?id=OHR.LifeguardEntrance_ZH-CN7394984988_UHD.jpg",
     "bing_imgname": "LifeguardEntrance_ZH-CN7394984988",
     "bing_hsh": "a8712ff7ed3690123f96c2f95830b9f6",
@@ -145,10 +152,10 @@ https://bing.nxingcloud.co/
 ##### 3.2 接口DEMO
 
 ```
-https://bing.nxingcloud.co/api
+https://bing.nxingcloud.co/api/
 ```
 
-此接口为[南星&NXING](https://nxingcloud.co/)免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。
+此接口为[@Xenns](https://nxingcloud.co/)免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。
 
 
 
@@ -189,26 +196,31 @@ https://bing.nxingcloud.co/api
     ├── api
     │   ├── php
     │   │	├── bing		// 图片缓存文件夹
-    │    │  ├── phpmailer   // 邮件依赖库文件夹
+    │   │   ├── phpmailer   // 邮件依赖库文件夹
     │   │	├── config.php	// 配置文件
     │   │   └── index.php	// 后台图片处理程序
     │   └── index.php		// 图片调用接口
     ├── css
     │   ├── about           // 关于界面文件夹
     │   ├── fonts           // 关于界面资源文件夹
+    │   ├── pics.css        // 画廊模式样式表
     │   ├── detail.css		// 详情页样式表
     │   ├── index.css		// 首页样式表
     │   └── main.css		// 主样式表
     ├── detail
     │   └── index.html		// 详情页
     ├── about
-    │    └── index.html             // 关于本站
+    │    └── index.html     // 关于本站
+    ├── docs
+    │    └── index.html     // API文档
     ├── js
     │   ├── detail.js		// 详情页js
     │   ├── index.js		// 首页js
+    │   ├── pics.js         // 画廊模式js
     │   └── main.js			// 主js
     ├── lib					//第三方库
     │   ├── layer
+    │   ├── LightGallery
     │   ├── bootstrap.min.css.map
     │   ├── bootstrap.min.css
     │   ├── bootstrap.min.js.map
@@ -217,6 +229,7 @@ https://bing.nxingcloud.co/api
     │   ├── progressive-image.css
     │   └── progressive-image.js
     ├── static				//静态资源
+    │   ├── icons8-bing-32.ico
     │   └── upyun_logo5.png
     └── index.php			// 首页
 
@@ -338,9 +351,13 @@ CDN建议的缓存设置如下：
 ```
 index.php
 detail/index.html
+docs/index.html
+pics/index.html
+about/index.html
 js/detail.js
 js/index.js
 js/main.js
+js/pics.js
 ```
 
 替换方法：

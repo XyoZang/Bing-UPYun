@@ -9,7 +9,8 @@ var start_date = new Date(start_str);//将字符串转化为时间
 var end_date = new Date();  
 var num = (end_date-start_date)/(1000*3600*24);//求出两个时间的时间差，这个是天数  
 var days = parseInt(Math.ceil(num));//转化为整天（小于零的话剧不用转了）
-console.log("days="+days);
+
+imgpro("#card");
 
 function getTitle(day) {
   let Title;
@@ -30,7 +31,6 @@ function GetPics(Element)
   for (var i = 0; i < 9; i++) {
     day = count + i;
     if (day<days){
-      console.log("day="+day);
       data = {
         src: "https://bing.nxingcloud.co/api/?day=" + day,
         thumb:"https://bing.nxingcloud.co/api/?day=" + day + "&thumbnail=25",
@@ -46,11 +46,12 @@ function GetPics(Element)
   return Element;
 }
 
-
 // **************主进程*****************
-GetPics(GalleryEl);
 const dynamicGallery = window.lightGallery($dynamicGallery, {
-  licenseKey: 'E7523834-34D04F31-885DCD0D-F02C08A8',
+  licenseKey: '00000000-00000000-00000000-00000000',
+  loop: false,
+  showZoomInOutIcons: true,
+  actualSize: false,
   dynamic: true,
   plugins: [lgZoom, lgThumbnail, lgFullscreen],
   dynamicEl: GalleryEl,
@@ -58,6 +59,10 @@ const dynamicGallery = window.lightGallery($dynamicGallery, {
 
 // Open gallery
 $dynamicGallery.addEventListener('click', function () {
+  if (GalleryEl.length == 0){
+      GetPics(GalleryEl);
+  }
+  dynamicGallery.refresh(GalleryEl);
   dynamicGallery.openGallery(0);
 });
 
@@ -80,4 +85,3 @@ document
     }
 });
 // ******************End-主进程*************
-

@@ -1,0 +1,74 @@
+.lg-fullscreen-on .lg-inner{
+    top: 0 !important;
+    bottom: 0 !important;
+}
+.lg-fullscreen-on .lg-components{
+    transform: translate3d(0, 100%, 0) !important;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    transition: 0.3s;
+    width: 60%;
+    height: fit-content;
+    border-radius: 5px;
+    margin: auto;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #e9ecef;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+    position: relative;
+    border-radius: 5px 5px 0 0;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+img::after {
+    content: "画廊模式";
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(../static/30-Sep-2022.jpg ) no-repeat center;
+}
+
+.btn-gallery{
+	width: 50%;
+    height: 4vh;
+    margin: 10px auto 10px auto;
+	border-radius: 24px;
+	background: #17a2b8;
+    color: white;
+	border: none;
+	outline: none;
+	box-shadow: 0 10px 10px rgba(0,0,0,.3);
+	display: block;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+    z-index: 1;
+}
+
+.container-card{
+    padding: 3%;
+}
+
+@media screen and (max-width: 768px) {
+    .card{width:90%}
+}
