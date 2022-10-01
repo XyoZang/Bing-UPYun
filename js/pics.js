@@ -46,8 +46,7 @@ function GetPics(Element)
 
 function LoadingOn(eleID){
   document.getElementById(eleID).innerHTML = 
-        '<span class="spinner-border spinner-border-sm" id="loading" style="display:none"></span>  Loading';
-  document.getElementById("loading").style.display = 'inline-block';
+        '<span class="spinner-border spinner-border-sm" id="loading"></span>  Loading';
   document.getElementById(eleID).disabled = true;
 }
 
