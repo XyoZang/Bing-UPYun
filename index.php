@@ -104,10 +104,10 @@ if ($imgdate){
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="https://nxingcloud.co/"><i class="iconfont icon-t"></i>
-                            南星的博客</a>
+                            Xenns的博客</a>
                         <a class="dropdown-item" href="/docs/"><i class="iconfont icon-fapiaojilu"></i>
                             API接口文档</a>
-                        <a class="dropdown-item" href="https://github.com/ZhangXQA/Bing-upyun"><i
+                        <a class="dropdown-item" href="https://github.com/imXenns/Bing-upyun"><i
                                 class="iconfont icon-github"></i> GitHub--本站源码</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/about/"><i
@@ -285,7 +285,7 @@ if ($imgdate){
                     <div class="card-header">友情链接</div>
                     <div class="card-body">
                         <h5 class="card-title">Links</h5>
-                        <p class="links" class="card-text"><a href="https://nxingcloud.co/">南星的博客</a></p>
+                        <p class="links" class="card-text"><a href="https://nxingcloud.co/">Xenns的博客</a></p>
                         <p class="links" class="card-text"><a href="https://blog.mcloc.cn/">小马奔腾的博客</a></p>
                     </div>
                 </div>
@@ -296,7 +296,7 @@ if ($imgdate){
                 <p id="foottext" class="col align-baseline text-secondary">
                     Copyright &copy;
                     <a target="_blank" href="https://nxingcloud.co/" class="text-secondary">
-                        2022 南星&NXING
+                        2022 Xenns
                     </a>&nbsp;|&nbsp;
                     <a target="_blank" href="http://www.beian.miit.gov.cn" class="text-secondary">
                         冀ICP备2022019815号-1

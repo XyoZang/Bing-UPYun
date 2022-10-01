@@ -6,10 +6,10 @@
     transform: translate3d(0, 100%, 0) !important;
 }
 
-.card {
+.card-gallery {
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
     transition: 0.3s;
-    width: 60%;
+    width: 50%;
     height: fit-content;
     border-radius: 5px;
     margin: auto;
@@ -21,7 +21,7 @@
 	background: #e9ecef;
 }
 
-.card:hover {
+.card-gallery:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
@@ -34,23 +34,10 @@ img {
     max-height: 100%;
 }
 
-img::after {
-    content: "画廊模式";
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background: url(../static/30-Sep-2022.jpg ) no-repeat center;
-}
-
 .btn-gallery{
 	width: 50%;
-    height: 4vh;
-    margin: 10px auto 10px auto;
-	border-radius: 24px;
-	background: #17a2b8;
-    color: white;
+    height: 4.5vh;
+    margin: 15px auto 15px auto;
 	border: none;
 	outline: none;
 	box-shadow: 0 10px 10px rgba(0,0,0,.3);
@@ -70,5 +57,5 @@ img::after {
 }
 
 @media screen and (max-width: 768px) {
-    .card{width:90%}
+    .card-gallery{width:90%}
 }
