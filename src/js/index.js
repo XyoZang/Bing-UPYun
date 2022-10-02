@@ -59,7 +59,7 @@ getText1();
 var dayj = (p - 1) * 9;
 var dayk = 0;
 getText2();
-
+document.getElementById("pagenumber").innerHTML=p+" / "+pmax;
 function pager(fx){
     switch (fx){
         case "back":
