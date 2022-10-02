@@ -9,10 +9,7 @@ if (window.location.search.substring(3)) {
 } else {
   var p = 1;
 }
-if (p==1){
-    document.getElementById("carouselExampleCaptions").style.display='block';
-    imgpro("#carousel-js");
-}
+
 //计算程序运行时间，即共有多少张图片，从而计算总共页数
 var start_str = ("2022/09/09");// 程序开始运行的日期 
 var start_date = new Date(start_str);//将字符串转化为时间    
@@ -22,6 +19,15 @@ var days = parseInt(Math.ceil(num));//转化为整天（小于零的话剧不用
 var pmax = Math.floor(days/9);
 if (days%9 != 0){
     pmax += 1;
+}
+
+if (p>pmax || p<1){  // 若跳转页码不在现有范围内，则转至404页面
+  window.location.href = "/404.html";
+}
+
+if (p==1){
+    document.getElementById("carouselExampleCaptions").style.display='block';
+    imgpro("#carousel-js");
 }
 
 function newdiv(ID){
@@ -35,7 +41,6 @@ function newdiv(ID){
   var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day="+newdayID;
   // 运行
   var newdiv = document.getElementById(divID);
-  console.log(newdiv);
   newdiv.setAttribute("id", newdivID);
   newdiv.setAttribute("data-day", newdayID);
   var newimg = document.getElementById(imgID);
@@ -43,16 +48,25 @@ function newdiv(ID){
   newimg.setAttribute("src", newsrc);
   newimg.setAttribute("data-src", newdatasrc);
 }
-if (p!=1){
-  for (var i = 0; i < 9; i++) {
-    newdiv(i);
-  }
-}
 
 for (var i = 0; i < 9; i++) {
+  newdiv(i);
   var ele = "#pic-js-son" + ((p-1)*9+i);
   imgpro(ele);
 }
+
+if (p==pmax && (days%9)!=0){ // 若页数为最后一页且有余数,则该页面只显示余数个数的图片,设最后不显示的几个div为display：none
+    var imax = (days%9-1); // 需隐藏的div数量
+    console.log(imax);
+    for(var i=8;i>imax;i--){ // 
+      var nodiv = "pic-js-son" + ((p-1)*9+i);
+      console.log(nodiv);
+      var dediv = document.getElementById(nodiv);
+      console.log(dediv);
+      dediv.parentNode.removeChild(dediv);
+    }
+}
+
 var dayi = (p - 1) * 9;
 function getText1() {
   $.ajax({
@@ -109,7 +123,6 @@ function pager(fx){
             }
             break;
         case "next":
-            console.log(pmax);
             if (p==pmax){
                 swal({title: "已经是最后一页了！",icon: "info",button: "确定",});
             } else{
