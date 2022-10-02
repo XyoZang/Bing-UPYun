@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="cn">
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://cdn.nxingcloud.co/images/logo/icon/bing-0eebe3c8d9b72f7730a537ef6289b198-2c327f.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./static/icons8-bing-32.ico" type="image/x-icon">
     <title>必应每日一图 - 领略世界之美</title>
     <link href="lib/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/progressive-image.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2042758_2fi5tvz8vl4.css">
+    <script async defer data-website-id="6264fbba-f3be-4116-bad8-f1a94d822ab9" src="https://uma.nxingcloud.co/xuezm.js"></script>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3663794_n7525ypef3n.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="header-text" class="navbar-brand align-middle" href="index.html"> <i id="header-icon"
+        <a id="header-text" class="navbar-brand align-middle" href="/about/"> <i id="header-icon"
                 class="iconfont icon-Bing align-bottom"></i> <strong>必应每日一图</strong> </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +46,9 @@
 
             <nav class="navbar-light bg-light mr-auto">
                 <form class="form-inline">
+                    <button id="btnGallery" class="btn btn-sm btn-info" type="button">
+                        画廊模式
+                    </button>
                     <button id="btnToday" class="btn btn-sm btn-info" type="button">
                         下载今日壁纸 <span class="badge badge-light">HD</span>
                     </button>
@@ -64,13 +69,11 @@
                         关于
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!--
-                        <a class="dropdown-item" href="https://www.mcloc.cn/"><i class="iconfont icon-weibiaoti1"></i>
-                            小马奔腾的作品集</a>
-                        -->
                         <a class="dropdown-item" href="https://nxingcloud.co/"><i class="iconfont icon-t"></i>
-                            南星的博客</a>
-                        <a class="dropdown-item" href="https://github.com/ZhangXQA/Bing-upyun"><i
+                            Xenns的博客</a>
+                        <a class="dropdown-item" href="/docs/"><i class="iconfont icon-fapiaojilu"></i>
+                            API接口文档</a>
+                        <a class="dropdown-item" href="https://github.com/imXenns/Bing-upyun"><i
                                 class="iconfont icon-github"></i> GitHub--本站源码</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/about/"><i
@@ -82,15 +85,15 @@
                 </li>
             </ul>
 
-            <!-- <form class="form-inline my-2 my-lg-0">
+            <!--<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> -->
         </div>
     </nav>
-
+    
     <!-- 轮播图 -->
-    <div id="carouselExampleCaptions" class="container carousel slide" data-ride="carousel" width="1920px">
+    <div id="carouselExampleCaptions" class="container carousel slide" data-ride="carousel" width="1920px" style="display:none">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -139,96 +142,83 @@
 
     <!-- 图片 -->
     <div class="container" id="pic-list">
-
         <div id="pic-js" class="row text-center justify-content-between">
+            <!-- 主页图片，每页9个 -->
             <div id="pic-js-son0" data-day="0" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=0"
+                    <img id="img-day0" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=0"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=0" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son1" data-day="1" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=1"
+                    <img id="img-day1" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=1"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=1" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son2" data-day="2" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=2"
+                    <img id="img-day2" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=2"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=2" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son3" data-day="3" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=3"
+                    <img id="img-day3" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=3"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=3" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son4" data-day="4" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=4"
+                    <img id="img-day4" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=4"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=4" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son5" data-day="5" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=5"
+                    <img id="img-day5" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=5"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=5" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son6" data-day="6" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=6"
+                    <img id="img-day6" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=6"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=6" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son7" data-day="7" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=7"
+                    <img id="img-day7" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=7"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=7" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
             <div id="pic-js-son8" data-day="8" class="pic-item my-3 shadow-sm rounded">
                 <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=8"
+                    <img id="img-day8" class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=8"
                         src="https://bing.nxingcloud.co/api/?thumbnail=1&day=8" alt="">
                 </div>
                 <p class="my-2"></p>
             </div>
-            <div id="pic-js-son9" data-day="9" class="pic-item my-3 shadow-sm rounded">
-                <div class="progressive">
-                    <img class="rounded img-fluid preview lazy" data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=9"
-                        src="https://bing.nxingcloud.co/api/?thumbnail=1&day=9" alt="">
-                </div>
-                <p class="my-2"></p>
-            </div>
-            <div id="pic-js-son10" data-day="10" class="pic-item my-3 shadow-sm rounded">
-                <div class="progressive">
-                    <img class="rounded img-fluid preview lazy"
-                        data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=10"
-                        src="https://bing.nxingcloud.co/api/?thumbnail=1&day=10" alt="">
-                </div>
-                <p class="my-2"></p>
-            </div>
-            <div id="pic-js-son11" data-day="11" class="pic-item my-3 shadow-sm rounded">
-                <div class="progressive">
-                    <img class="rounded img-fluid preview lazy"
-                        data-src="https://bing.nxingcloud.co/api/?thumbnail=25&day=11"
-                        src="https://bing.nxingcloud.co/api/?thumbnail=1&day=11" alt="">
-                </div>
-                <p class="my-2"></p>
-            </div>
+        </div>
+        <div class="alert alert-secondary" role="alert">
+        <i class="iconfont icon-jingshi"></i> 本站所有图片均来自Bing搜索官网，版权归图片创作者所有。尊重版权，请勿商用！
         </div>
 
+    </div>
+    
+    <!--翻页按钮-->
+    <div class="page">
+        <button type="button" class="btn btn-primary" id="index-pageback" onclick="pager('back')">上一页</button>
+        <span>  页码  </span>
+        <button type="button" class="btn btn-primary" id="index-pagenext" onclick="pager('next')">下一页</button>
     </div>
 
     <!-- 页脚 -->
@@ -236,14 +226,23 @@
         <div class="container">
             <div class="row justify-content-around">
                 <div class="card text-white bg-secondary mb-3" style="width: 18rem;">
-                    <div class="card-header">关于这个网站</div>
+                    <div class="card-header">本站功能</div>
                     <div class="card-body">
                         <h5 class="card-title">About this website</h5>
                         <p class="card-text">
-                            必应搜索首页背景图，每天零点更新，并提供支持图片处理、回溯的接口。<br>
+                            本站提供必应每日壁纸超高分辨率原图下载，同时支持图片处理、回溯的API接口。<br>
                             诗曰：“ 沉舟侧畔千帆过，病树前头万木春。”
                             请跟随必应的脚步，带您领略世界之美。
                         </p>
+                    </div>
+                </div>
+                
+                <div class="card text-white bg-secondary mb-3" style="width: 18rem;">
+                    <div class="card-header">本站信息</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Website information</h5>
+                        <p class="links" class="card-text">本站建立日期为2022-09-09，采用又拍云作为云存储，在<a href="https://github.com/androidmumo/Bing-upyun/">小马奔腾的源码</a>基础上进行了二次开发，修改详情请移步"<a href="/about/">关于本站</a>"</p><br>
+                        <p class="links" class="card-text"><a href="/about/">提点建议</a></p>
                     </div>
                 </div>
 
@@ -251,26 +250,18 @@
                     <div class="card-header">友情链接</div>
                     <div class="card-body">
                         <h5 class="card-title">Links</h5>
-                        <p class="links" class="card-text"><a href="https://nxingcloud.co/">南星的博客</a></p>
+                        <p class="links" class="card-text"><a href="https://nxingcloud.co/">Xenns的博客</a></p>
+                        <p class="links" class="card-text"><a href="https://blog.mcloc.cn/">小马奔腾的博客</a></p>
                     </div>
                 </div>
-                
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">本站源码</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">The source code.</h6>
-                        <p class="card-text">本站源码来自于大佬小马奔腾。</p>
-                        <!--<a href="https://blog.mcloc.cn/archives/632.html" class="card-link">提点建议</a>-->
-                        <a href="https://blog.mcloc.cn/" class="card-link">小马奔腾的博客</a>
-                    </div>
-                </div>
+
             </div>
 
             <div class="row text-center align-middle">
                 <p id="foottext" class="col align-baseline text-secondary">
-                    nxingcloud.co &copy;
+                    Copyright &copy;
                     <a target="_blank" href="https://nxingcloud.co/" class="text-secondary">
-                        2022 南星&NXING
+                        2022 Xenns
                     </a>&nbsp;|&nbsp;
                     <a target="_blank" href="http://www.beian.miit.gov.cn" class="text-secondary">
                         冀ICP备2022019815号-1
@@ -280,8 +271,8 @@
                         class="text-secondary">
                         <img src="https://www.mcloc.cn/wp-content/uploads/2020/04/beiantubiao-18.png" />
                         豫公网安备 41080202000141号
-                    -->
                     </a>&nbsp;|&nbsp;
+                    -->
                     <a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
                         class="text-secondary">
                         本网站由
@@ -293,21 +284,13 @@
         </div>
     </footer>
 
-    <!-- 旧版 IE 升级提示弹窗代码 -->
-    <script>
-        /*@cc_on 
-        var _iealwn = {once: 3, outver: 10};
-        document.write('\x3Cscript id="_iealwn_js" src="https://support.dmeng.net/ie-alert-warning/latest.js">\x3C/script>'); 
-        @*/
-    </script>
     <script src="lib/jquery-1.11.0.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/progressive-image.js"></script>
-    <link href="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-2a1f8b36.css" rel="stylesheet">
-    <script src="https://cdn.nxingcloud.co/assets/style/artalk/Artalk-b5b3a442.js"></script>
     <script src="lib/layer/layer.js"></script>
     <script src="js/main.js"></script>
     <script src="js/index.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>
