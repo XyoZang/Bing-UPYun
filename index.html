@@ -219,6 +219,14 @@
         <button type="button" class="btn btn-primary" id="index-pageback" onclick="pager('back')">上一页</button>
         <span id="pagenumber"></span>
         <button type="button" class="btn btn-primary" id="index-pagenext" onclick="pager('next')">下一页</button>
+        <div class="dropdown dropdown-pagelist">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                  跳转至
+            </button>
+            <div id="pagelist" class="dropdown-menu dropdown-menu-right">
+
+            </div>
+        </div>
     </div>
 
     <!-- 页脚 -->
@@ -285,6 +293,7 @@
     </footer>
 
     <script src="lib/jquery-1.11.0.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/progressive-image.js"></script>
     <script src="lib/layer/layer.js"></script>

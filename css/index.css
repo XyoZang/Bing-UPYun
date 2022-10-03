@@ -6,16 +6,12 @@
     padding: .3rem;
 }
 
-.page a {
-    background-color: #17a2b8;
-    border: none;
-    color: white;
-    padding: 7px 16px;
-    text-align: center;
-    border-radius: 15px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+.dropdown-pagelist {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+    transform: translate(120%,-50%);
 }
 
 .page span {
