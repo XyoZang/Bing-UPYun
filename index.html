@@ -299,7 +299,21 @@
     <script src="lib/layer/layer.js"></script>
     <script src="js/main.js"></script>
     <script src="js/index.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+    // Initialize the agent at application startup.
+    const fpPromise = import('https://fpcdn.io/v3/9k5M0y7ExJ3ULU9DEzqa')
+      .then(FingerprintJS => FingerprintJS.load())
+    
+    // Get the visitor identifier when you need it.
+    fpPromise
+      .then(fp => fp.get())
+      .then(result => {
+        // This is the visitor identifier:
+        const visitorId = result.visitorId
+        console.log(visitorId)
+      })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
