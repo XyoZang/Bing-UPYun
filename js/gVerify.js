@@ -4,7 +4,7 @@
             id: "", //容器Id
             canvasId: "verifyCanvas", //canvas的ID
             width: "300", //默认canvas宽度
-            height: "70", //默认canvas高度
+            height: "80", //默认canvas高度
             type: "blend", //图形验证码默认类型blend:数字字母混合类型、number:纯数字、letter:纯字母
             code: ""
         }
@@ -33,7 +33,7 @@
             var con = document.getElementById(this.options.id);
             var canvas = document.createElement("canvas");
             this.options.width = con.offsetWidth > 0 ? con.offsetWidth : "300";
-            this.options.height = con.offsetHeight > 0 ? con.offsetHeight : "70";
+            this.options.height = con.offsetHeight > 0 ? con.offsetHeight : "80";
             canvas.id = this.options.canvasId;
             canvas.width = this.options.width;
             canvas.height = this.options.height;
