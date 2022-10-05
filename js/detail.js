@@ -60,10 +60,10 @@ var modalImgStr =
   '" alt="">\n';
 $(".modal-img-wrap").empty().append(modalImgStr),
   $("#btnHd").click(function () {
-    download_img(imgUrlHd, "BingHd")
+    veryfier(imgUrlHd, "BingHd");
   }),
   $("#btnUhd").click(function () {
-    download_img(imgUrlUhd, "BingUhd");
+    veryfier(imgUrlUhd, "BingUhd");
   });
 var gallerycontainer = document.getElementById("detail-gallery");
 lightGallery(gallerycontainer, {

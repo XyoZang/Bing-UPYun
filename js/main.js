@@ -1,6 +1,5 @@
 "use strict";
 var upyunDom = "https://ubing.nxingcloud.co/";
-var down_today = 0;
 function todayTimeEn(e) {
   var t = new Date();
   t.setDate(t.getDate() - e);
@@ -46,7 +45,7 @@ $("#btnGallery").on("click", function () {
   window.location.href = "/pics/";
 }),
   $("#btnToday").click(function () {
-    download_img(getImgUrlHd(today), "BingToday");
+    veryfier(getImgUrlHd(today), "BingToday");
   });
 
 function download_img(Url, Way){
@@ -82,6 +81,41 @@ function download_img(Url, Way){
         icon: "success",
         confirmButtonText: "确定",
       });
+}
+var verifyCode = new GVerify("v_container");
+function veryfier(Url,Way){
+    if ($.cookie(Url)==undefined){
+        $.cookie(Url,1);
+    } else{
+        var a = parseInt($.cookie(Url))+1;
+        $.removeCookie(Url);
+        $.cookie(Url,a);
+    }
+    if ($.cookie(Url)<=2){
+        download_img(Url,Way);
+    } else{
+        $('#verifyModal').modal();
+        document.getElementById("my_button").onclick = function(){
+            var res = verifyCode.validate(document.getElementById("code_input").value);
+            if(res){
+                download_img(Url,Way);
+                Swal.fire({
+                    title: "验证正确！",
+                    text: "下载已开始！",
+                    icon: "success",
+                    confirmButtonText: "确定",
+                });
+                $('#verifyModal').modal('hide');
+            }else{
+                Swal.fire({
+                    title: "验证错误！",
+                    text: "请重试！",
+                    icon: "error",
+                    confirmButtonText: "确定",
+                });
+            }
+        }
+    }
 }
   
 var keyTime = new Date();

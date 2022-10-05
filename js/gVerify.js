@@ -3,8 +3,8 @@
         this.options = { //默认options参数值
             id: "", //容器Id
             canvasId: "verifyCanvas", //canvas的ID
-            width: "200", //默认canvas宽度
-            height: "50", //默认canvas高度
+            width: "300", //默认canvas宽度
+            height: "70", //默认canvas高度
             type: "blend", //图形验证码默认类型blend:数字字母混合类型、number:纯数字、letter:纯字母
             code: ""
         }
@@ -112,6 +112,7 @@
             var v_code = this.options.code.toLowerCase();
             console.log(v_code);
             if(code == v_code){
+                this.refresh();
                 return true;
             }else{
                 this.refresh();
