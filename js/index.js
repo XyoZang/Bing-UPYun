@@ -109,8 +109,8 @@ function newdiv(ID) {
   var newdivID = "pic-js-son" + newdayID;
   var newimgID = "img-day" + newdayID;
   var newdatasrc =
-    "https://bing.nxingcloud.co/api/?thumbnail=25&day=" + newdayID;
-  var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day=" + newdayID;
+    "https://bing.nxingcloud.co/api/?thumbnail=25&day=" + newdayID + "?tempid=" + Math.random();
+  var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day=" + newdayID + "?tempid=" + Math.random();
   var newdiv = document.getElementById(divID);
   newdiv.setAttribute("id", newdivID);
   newdiv.setAttribute("data-day", newdayID);

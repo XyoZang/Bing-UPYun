@@ -93,17 +93,7 @@ function veryfier(Url,Way){
     }
     if ($.cookie(Url)<=2){
         download_img(Url,Way);
-    } else{
-        if ($.cookie(Url)>=5){
-          $("#test").click(function(){
-            $.post("../api/mailto.php",
-            {
-              mailto: "z1304242002@163.com",
-              mailsubject: "Bing-多次下载警告",
-              mailcontent: "Bing图片正在被多次下载！"+"次数已达 "+$.cookie(Url)+" 次！",
-            });
-          });
-        }
+    } else if($.cookie(Url)<=5){
         $('#verifyModal').modal();
         document.getElementById("my_button").onclick = function(){
             var res = verifyCode.validate(document.getElementById("code_input").value);
@@ -125,6 +115,18 @@ function veryfier(Url,Way){
                 });
             }
         }
+    } else{
+      $.post("../api/mailto.php",
+        {
+          mailto: "z1304242002@163.com",
+          mailsubject: "Bing-多次下载警告",
+          mailcontent: "Bing图片正在被多次下载！"+"次数已达 "+$.cookie(Url)+" 次！",
+        });
+        Swal.fire({
+          title: "请勿重复下载！",
+          icon: "warning",
+          confirmButtonText: "确定",
+      });
     }
 }
   
