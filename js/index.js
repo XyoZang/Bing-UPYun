@@ -57,8 +57,9 @@ getText2();
 document.getElementById("pagenumber").innerHTML = p + " / " + pmax;
 for (var i = 1; i <= pmax; i++) {
   document.getElementById("pagelist").innerHTML +=
-    '<a class="dropdown-item" href="/?p=' + i + '">第 ' + i + " 页</a>";
+    '<a id="page' + i +'"class="dropdown-item" href="/?p=' + i + '">第 ' + i + " 页</a>";
 }
+document.getElementById("page"+p).className += ' disabled';
 function pager(fx) {
   switch (fx) {
     case "back":
@@ -109,8 +110,8 @@ function newdiv(ID) {
   var newdivID = "pic-js-son" + newdayID;
   var newimgID = "img-day" + newdayID;
   var newdatasrc =
-    "https://bing.nxingcloud.co/api/?thumbnail=25&day=" + newdayID + "?tempid=" + Math.random();
-  var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day=" + newdayID + "?tempid=" + Math.random();
+    "https://bing.nxingcloud.co/api/?thumbnail=25&day=" + newdayID;
+  var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day=" + newdayID;
   var newdiv = document.getElementById(divID);
   newdiv.setAttribute("id", newdivID);
   newdiv.setAttribute("data-day", newdayID);

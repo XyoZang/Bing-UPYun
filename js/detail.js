@@ -7,9 +7,9 @@ var daydata = getUrlParam("daydata"),
     daydata +
     '" alt=""><img data-src="https://bing.nxingcloud.co/api/?day=' +
     daydata +
-    '?tempid=' + Math.random() + '" src="https://bing.nxingcloud.co/api/?day=' +
+    '" src="https://bing.nxingcloud.co/api/?day=' +
     daydata +
-    '&thumbnail=1?tempid=' + Math.random() + '" class="d-block w-100 rounded preview lazy" alt=' +
+    '&thumbnail=1" class="d-block w-100 rounded preview lazy" alt=' +
     imgTit +
     "></a>\n";
 function getImgMsg(a) {
