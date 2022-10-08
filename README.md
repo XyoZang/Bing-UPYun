@@ -12,7 +12,7 @@
 >
 >2、增加了获取指定日期的图片的功能。
 >
->3、增加了分页功能与翻页按钮，展示本站所有的图片。
+>3、增加了分页功能与翻页按钮、跳转按钮，展示本站所有的图片。
 >
 >4、更换本站评论系统为Artalk。
 >
@@ -29,6 +29,8 @@
 >10、增加了画廊模式，提高观赏体验
 >
 >11、增加每日图片抓取结果的邮箱通知，包含整个抓取过程
+>
+>12、增加了多次下载时弹窗验证码验证，防止恶意攻击
 
 
 
@@ -42,6 +44,7 @@
 - 丰富的接口功能
 - 美观的画廊模式
 - 每日抓取结果邮件通知
+- 多次下载时验证码弹窗
 
 
 <img src="https://cdn.nxingcloud.co/images/posts/bing/screenshot-bing-033efc0997daaf28c6b981124e87d470-a8b568.jpg" alt="screenshot-bing" style="zoom:50%;" />
@@ -91,6 +94,8 @@ https://bing.nxingcloud.co/
 - PHPMailer邮件发送库
 
 - LightGallery画廊
+
+- gVerify图形验证码
 
 > 注意: LightGallery并非完全开源，若需商用请联系作者购买许可证
 
@@ -231,7 +236,7 @@ https://bing.nxingcloud.co/api/
     ├── static				//静态资源
     │   ├── icons8-bing-32.ico
     │   └── upyun_logo5.png
-    └── index.php			// 首页
+    └── index.html			// 首页
 
 
 ##### 4.1.3 配置信息
