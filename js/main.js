@@ -51,13 +51,13 @@ function getUrlParam(e) {
 }
 $("#nav").on('click','#btnHome',function(){
   window.location.href = "/";
-})
+});
 $("#nav").on('click','#btnGallery',function(){
   window.location.href = "/pics/";
-})
+});
 $("#nav").on('click','#btnToday',function(){
   veryfier(getImgUrlHd(today), "BingToday");
-})
+});
 function download_img(Url, Way){
     // url: imgUrlHd/imgUrlUhd, way: bingHD, bingUhd
     var n = new XMLHttpRequest();
