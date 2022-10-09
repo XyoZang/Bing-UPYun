@@ -1,4 +1,12 @@
 "use strict";
+$(".include").each(function() {
+  if (!!$(this).attr("file")) {
+      var $includeObj = $(this);
+      $(this).load($(this).attr("file"), function(html) {
+          $includeObj.after(html).remove(); //加载的文件内容写入到当前标签后面并移除当前标签
+      })
+  }
+});
 var upyunDom = "https://ubing.nxingcloud.co/";
 function todayTimeEn(e) {
   var t = new Date();
@@ -84,7 +92,9 @@ function download_img(Url, Way){
         confirmButtonText: "确定",
       });
 }
-
+if (window.location.pathname=="/"||window.location.pathname=="/detail/"){
+    var verifyCode = new GVerify("v_container");
+}
 function veryfier(Url,Way){
     if ($.cookie(Url)==undefined){
         $.cookie(Url,1);
@@ -131,15 +141,6 @@ function veryfier(Url,Way){
       });
     }
 }
-
-$(".include").each(function() {
-  if (!!$(this).attr("file")) {
-      var $includeObj = $(this);
-      $(this).load($(this).attr("file"), function(html) {
-          $includeObj.after(html).remove(); //加载的文件内容写入到当前标签后面并移除当前标签
-      })
-  }
-});
   
 var keyTime = new Date();
 function timer(e) {
