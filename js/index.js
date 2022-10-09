@@ -60,6 +60,7 @@ for (var i = 1; i <= pmax; i++) {
     '<a id="page' + i +'"class="dropdown-item" href="/?p=' + i + '">第 ' + i + " 页</a>";
 }
 document.getElementById("page"+p).className += ' disabled';
+var verifyCode = new GVerify("v_container");
 function pager(fx) {
   switch (fx) {
     case "back":

@@ -41,13 +41,15 @@ function getUrlParam(e) {
     n = window.location.search.substr(1).match(t);
   return null != n ? unescape(n[2]) : null;
 }
+$("#btnHome").on("click", function () {
+  window.location.href = "/";
+});
 $("#btnGallery").on("click", function () {
   window.location.href = "/pics/";
-}),
-  $("#btnToday").click(function () {
-    veryfier(getImgUrlHd(today), "BingToday");
-  });
-
+});
+$("#btnToday").click(function () {
+  veryfier(getImgUrlHd(today), "BingToday");
+});
 function download_img(Url, Way){
     // url: imgUrlHd/imgUrlUhd, way: bingHD, bingUhd
     var n = new XMLHttpRequest();
@@ -82,7 +84,7 @@ function download_img(Url, Way){
         confirmButtonText: "确定",
       });
 }
-var verifyCode = new GVerify("v_container");
+
 function veryfier(Url,Way){
     if ($.cookie(Url)==undefined){
         $.cookie(Url,1);
@@ -129,6 +131,15 @@ function veryfier(Url,Way){
       });
     }
 }
+
+$(".include").each(function() {
+  if (!!$(this).attr("file")) {
+      var $includeObj = $(this);
+      $(this).load($(this).attr("file"), function(html) {
+          $includeObj.after(html).remove(); //加载的文件内容写入到当前标签后面并移除当前标签
+      })
+  }
+});
   
 var keyTime = new Date();
 function timer(e) {

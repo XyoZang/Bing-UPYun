@@ -3,94 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>画廊 | 必应每日一图 - 领略世界之美</title>
-    <meta name="keywords" content="必应壁纸,必应美图,必应每日壁纸,必应每日美图,必应壁纸下载,必应每日壁纸下载,必应每日壁纸接口,必应每日壁纸官方下载,Bing壁纸,微软bing每日壁纸">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta content="telephone=no,email=no" name="format-detection">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,Chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="../static/icons8-bing-32.ico" sizes="32x32">
-    <link href="../lib/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../lib/progressive-image.css">
+    <link rel="shortcut icon" href="https://bing.nxingcloud.co/static/icons8-bing-32.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2042758_2fi5tvz8vl4.css">
-    <script async defer data-website-id="6264fbba-f3be-4116-bad8-f1a94d822ab9" src="https://uma.nxingcloud.co/xuezm.js"></script>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/pics.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3663794_n7525ypef3n.css">
+    <script async defer data-website-id="6264fbba-f3be-4116-bad8-f1a94d822ab9" src="https://uma.nxingcloud.co/xuezm.js"></script>
+
+    <link href="https://bing.nxingcloud.co/lib/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://bing.nxingcloud.co/lib/progressive-image.css">
+    <link rel="stylesheet" href="https://bing.nxingcloud.co/css/main.css">
+    <link rel="stylesheet" href="../css/pics.css">
     <link type="text/css" rel="stylesheet" href="../lib/lightgallery/css/lightgallery-bundle.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a id="header-text" class="navbar-brand align-middle" href="/"> <i id="header-icon"
-                class="iconfont icon-Bing align-bottom"></i> <strong>必应每日一图</strong> </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">text</a>
-                </li>
-            </ul> -->
-
-            <div class="col align-self-end">
-                <div class="progress row" style="width: 13.2rem">
-                    <div id="js-progress" class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                        style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">25%</div>
-                </div>
-                <div class="row">
-                    <span>离下次图片更新还有&nbsp;&nbsp;</span>
-                    <span id="h"></span>:
-                    <span id="m"></span>:
-                    <span id="s"></span>
-                </div>
-            </div>
-
-            <nav class="navbar-light bg-light mr-auto">
-                <form class="form-inline">
-                    <button id="btnGallery" class="btn btn-sm btn-info" type="button">
-                        画廊模式
-                    </button>
-                    <button id="btnToday" class="btn btn-sm btn-info" type="button">
-                        下载今日壁纸 <span class="badge badge-light">HD</span>
-                    </button>
-                </form>
-            </nav>
-
-            <ul class="navbar-nav">
-
-                <!-- <li class="nav-item active">
-                    <a class="nav-link" href="#">主页 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li> -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        关于
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="https://nxingcloud.co/"><i class="iconfont icon-t"></i>
-                            Xenns的博客</a>
-                        <a class="dropdown-item" href="/docs/"><i class="iconfont icon-fapiaojilu"></i>
-                            API接口文档</a>
-                        <a class="dropdown-item" href="https://github.com/imXenns/Bing-upyun"><i
-                                class="iconfont icon-github"></i> GitHub--本站源码</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/about/"><i
-                                class="iconfont icon-guanyu"></i> 关于本站 </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">带您领略世界之美</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <!-- 导航栏 -->
+    <div class="include" file="/include/nav.html"></div>
     
     <div class="card-gallery">
       <div class="img">
@@ -105,34 +32,9 @@
       </div>
     </div>
 
-    <footer class="container-404">
-        <div class="container">
-            <div class="row text-center align-middle">
-                        <p id="foottext" class="col align-baseline text-secondary">
-                            Copyright &copy;
-                            <a target="_blank" href="https://nxingcloud.co/" class="text-secondary">
-                                2022 Xenns
-                            </a>&nbsp;|&nbsp;
-                            <a target="_blank" href="http://www.beian.miit.gov.cn" class="text-secondary">
-                                冀ICP备2022019815号-1
-                            </a>&nbsp;|&nbsp;
-                            <!--
-                            <a target="_blank"
-                                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41080202000141"
-                                class="text-secondary">
-                                <img src="https://www.mcloc.cn/wp-content/uploads/2020/04/beiantubiao-18.png" />
-                                豫公网安备 41080202000141号
-                            </a>&nbsp;|&nbsp;
-                            -->
-                            <a target="_blank" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral"
-                                class="text-secondary">
-                                本网站由
-                                <img src="../static/upyun_logo5.png" alt="" class="align-middle">
-                                提供CDN加速/云存储服务
-                            </a>
-                        </p>
-            </div>
-        </div>
+    <!-- 页脚 -->
+    <div class="include" file="/include/footer.html"></div>
+    
     <script src="../lib/jquery-1.11.0.js"></script>
     <script src="../lib/bootstrap.min.js"></script>
     <script src="../lib/progressive-image.js"></script>
@@ -143,8 +45,6 @@
     <script src="../lib/lightgallery/plugins/fullscreen/lg-fullscreen.umd.js"></script>
     <script src="../js/pics.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    </footer>
 </body>
-<!-- 页脚 -->
 
 </html>

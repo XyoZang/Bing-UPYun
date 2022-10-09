@@ -86,3 +86,4 @@ const requestFullScreen = () => {
 gallerycontainer.addEventListener("lgAfterOpen", () => {
   requestFullScreen();
 });
+var verifyCode = new GVerify("v_container");

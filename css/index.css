@@ -1,1 +1,49 @@
-#pic-list{margin-top:0rem}#carouselExampleCaptions{margin-top:0.8rem}#pic-tit{margin-top:5rem}#pic-tit h4 span{font-size:small}.pic-item{padding:1rem;padding-bottom:0;width:32%;margin:0 auto}#pic-js p span{margin:0 0 0.6rem 0}.page{position: relative;top: 45px;text-align: center;padding: .3rem;}.dropdown-pagelist{position: absolute;top: 50%;left: 50%;z-index: 10;transform: translate(120%,-50%);}.page span{display: inline-block;padding: 0 .1rem;}.alert{text-align: center;width: 100%;top: 22px;margin: 0 auto;}@media screen and (max-width: 768px){.pic-item{width:96%}}
+#pic-list {
+  margin-top: 0rem;
+}
+#carouselExampleCaptions {
+  margin-top: 0.8rem;
+}
+#pic-tit {
+  margin-top: 5rem;
+}
+#pic-tit h4 span {
+  font-size: small;
+}
+.pic-item {
+  padding: 1rem;
+  padding-bottom: 0;
+  width: 32%;
+  margin: 0 auto;
+}
+#pic-js p span {
+  margin: 0 0 0.6rem 0;
+}
+.page {
+  position: relative;
+  top: 45px;
+  text-align: center;
+  padding: 0.3rem;
+}
+.dropdown-pagelist {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  transform: translate(120%, -50%);
+}
+.page span {
+  display: inline-block;
+  padding: 0 0.1rem;
+}
+.alert {
+  text-align: center;
+  width: 100%;
+  top: 22px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+  .pic-item {
+    width: 96%;
+  }
+}
