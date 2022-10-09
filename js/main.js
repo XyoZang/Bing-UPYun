@@ -49,15 +49,15 @@ function getUrlParam(e) {
     n = window.location.search.substr(1).match(t);
   return null != n ? unescape(n[2]) : null;
 }
-$("#btnHome").on("click", function () {
+$("#nav").on('click','#btnHome',function(){
   window.location.href = "/";
-});
-$("#btnGallery").on("click", function () {
+})
+$("#nav").on('click','#btnGallery',function(){
   window.location.href = "/pics/";
-});
-$("#btnToday").click(function () {
+})
+$("#nav").on('click','#btnToday',function(){
   veryfier(getImgUrlHd(today), "BingToday");
-});
+})
 function download_img(Url, Way){
     // url: imgUrlHd/imgUrlUhd, way: bingHD, bingUhd
     var n = new XMLHttpRequest();
