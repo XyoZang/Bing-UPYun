@@ -55,9 +55,10 @@ $("#nav").on('click','#btnHome',function(){
 $("#nav").on('click','#btnGallery',function(){
   window.location.href = "/pics/";
 });
+var verifyCode;
 $("#nav").on('click','#btnToday',function(){
   if (!$("#v_container").html()){
-    var verifyCode = new GVerify("v_container");
+    verifyCode = new GVerify("v_container");
   }
   veryfier(getImgUrlHd(today), "BingToday");
 });
