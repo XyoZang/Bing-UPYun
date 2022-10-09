@@ -56,6 +56,9 @@ $("#nav").on('click','#btnGallery',function(){
   window.location.href = "/pics/";
 });
 $("#nav").on('click','#btnToday',function(){
+  if (!$("#v_container").html()){
+    var verifyCode = new GVerify("v_container");
+  }
   veryfier(getImgUrlHd(today), "BingToday");
 });
 function download_img(Url, Way){
@@ -91,9 +94,6 @@ function download_img(Url, Way){
         icon: "success",
         confirmButtonText: "确定",
       });
-}
-if (window.location.pathname=="/"||window.location.pathname=="/detail/"){
-    var verifyCode = new GVerify("v_container");
 }
 function veryfier(Url,Way){
     if ($.cookie(Url)==undefined){
