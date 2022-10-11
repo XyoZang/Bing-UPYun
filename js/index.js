@@ -93,23 +93,24 @@ function getQueryVariable(variable) {
   }
   return false;
 }
-function newdiv(ID) {
-  var divID = "pic-js-son" + ID,
-    imgID = "img-day" + ID;
-  var newdayID = ID + (p - 1) * 9;
-  var newdivID = "pic-js-son" + newdayID;
-  var newimgID = "img-day" + newdayID;
-  var newdatasrc =
-    "https://bing.nxingcloud.co/api/?thumbnail=25&day=" + newdayID;
-  var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day=" + newdayID;
-  var newdiv = document.getElementById(divID);
-  newdiv.setAttribute("id", newdivID);
-  newdiv.setAttribute("data-day", newdayID);
-  var newimg = document.getElementById(imgID);
-  newimg.setAttribute("id", newimgID);
-  newimg.setAttribute("src", newsrc);
-  newimg.setAttribute("data-src", newdatasrc);
-}
+// 参数day版本的加载函数，已废弃
+// function newdiv(ID) {
+//   var divID = "pic-js-son" + ID,
+//     imgID = "img-day" + ID;
+//   var newdayID = ID + (p - 1) * 9;
+//   var newdivID = "pic-js-son" + newdayID;
+//   var newimgID = "img-day" + newdayID;
+//   var newdatasrc =
+//     "https://bing.nxingcloud.co/api/?thumbnail=25&day=" + newdayID;
+//   var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day=" + newdayID;
+//   var newdiv = document.getElementById(divID);
+//   newdiv.setAttribute("id", newdivID);
+//   newdiv.setAttribute("data-day", newdayID);
+//   var newimg = document.getElementById(imgID);
+//   newimg.setAttribute("id", newimgID);
+//   newimg.setAttribute("src", newsrc);
+//   newimg.setAttribute("data-src", newdatasrc);
+// }
 function newdiv_date(ID){
   var divID = "pic-js-son" + ID,
     imgID = "img-day" + ID;
