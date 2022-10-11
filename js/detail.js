@@ -1,13 +1,13 @@
 "use strict";
-var daydata = getUrlParam("daydata"),
+var daydata = getUrlParam("date"),
   detailMsg = getImgMsg(daydata),
   imgTit = detailMsg.bing_title,
   bigImgStr =
-    '\n            <a href="https://bing.nxingcloud.co/api/?day=' +
+    '\n            <a href="https://bing.nxingcloud.co/api/?date=' +
     daydata +
-    '" alt=""><img data-src="https://bing.nxingcloud.co/api/?day=' +
+    '" alt=""><img data-src="https://bing.nxingcloud.co/api/?date=' +
     daydata +
-    '" src="https://bing.nxingcloud.co/api/?day=' +
+    '" src="https://bing.nxingcloud.co/api/?date=' +
     daydata +
     '&thumbnail=1" class="d-block w-100 rounded preview lazy" alt=' +
     imgTit +
@@ -19,7 +19,7 @@ function getImgMsg(a) {
       type: "GET",
       async: !1,
       url: "https://bing.nxingcloud.co/api/",
-      data: "type=json&day=" + a,
+      data: "type=json&date=" + a,
       success: function (a) {
         e = $.parseJSON(a);
       },
@@ -29,9 +29,7 @@ function getImgMsg(a) {
 }
 $("#bigimg-wrap").children(".progressive").empty().append(bigImgStr),
   imgpro("#bigimg-wrap");
-var detailMsg = getImgMsg(daydata),
-  imgSubDate = detailMsg.submission_date,
-  imgTit = detailMsg.bing_title,
+var imgSubDate = detailMsg.submission_date,
   imgUrlHd = detailMsg.bing_imgurl,
   imgUrlUhd = detailMsg.bing_imgurluhd;
 $("title").text(imgTit),
@@ -45,7 +43,7 @@ $("title").text(imgTit),
     ),
   new Artalk({
     el: "#vcomments",
-    pageKey: `/?d=${imgSubDate}`,
+    pageKey: `/detail/?date=${imgSubDate}`,
     pageTitle: "",
     server: "https://artalk.nxingcloud.co",
     site: "必应每日一图",
@@ -55,7 +53,7 @@ $("title").text(imgTit),
     ],
   });
 var modalImgStr =
-  '\n<img class="rounded img-fluid" src="https://bing.nxingcloud.co/api/?day=' +
+  '\n<img class="rounded img-fluid" src="https://bing.nxingcloud.co/api/?date=' +
   daydata +
   '" alt="">\n';
 $(".modal-img-wrap").empty().append(modalImgStr),

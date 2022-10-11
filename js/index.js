@@ -2,17 +2,7 @@
 var start_str = "2022/09/09";
 var start_date = new Date(start_str);
 var date_now = new Date();
-if (getQueryVariable("d")) {
-  var imgdate = getQueryVariable("d").replace(/-/g, " ");
-  var date_img = new Date(imgdate);
-  if (start_date <= date_img && date_img <= date_now) {
-    var imgday = (date_now - date_img) / (1000 * 3600 * 24);
-    var imgday = parseInt(Math.floor(imgday));
-    window.location.href = "detail/?daydata=" + imgday;
-  } else {
-    window.location.href = "/404.html";
-  }
-}
+var monther = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 if (getQueryVariable("p")) {
   var p = parseInt(getQueryVariable("p"));
 } else {
@@ -42,12 +32,12 @@ if (p == pmax && days % 9 != 0) {
   var imax = 8;
 }
 for (var i = 0; i <= imax; i++) {
-  newdiv(i);
+  newdiv_date(i);
   var ele = "#pic-js-son" + ((p - 1) * 9 + i);
   imgpro(ele);
 }
 $("#pic-js").on("click", ".pic-item", function () {
-  window.location.href = "detail/?daydata=" + $(this).attr("data-day");
+  window.location.href = "detail/?date=" + $(this).attr("data-date");
 });
 var dayi = (p - 1) * 9;
 getText1();
@@ -119,6 +109,34 @@ function newdiv(ID) {
   newimg.setAttribute("id", newimgID);
   newimg.setAttribute("src", newsrc);
   newimg.setAttribute("data-src", newdatasrc);
+}
+function newdiv_date(ID){
+  var divID = "pic-js-son" + ID,
+    imgID = "img-day" + ID;
+  var newdayID = ID + (p - 1) * 9;
+  var newdivID = "pic-js-son" + newdayID;
+  var newimgID = "img-day" + newdayID;
+  var newdate=new Date();
+  newdate = newdate.setDate(newdate.getDate()-newdayID);
+  newdate = new Date(newdate);
+  newdate = dateFormat(newdate);
+  var newdatasrc =
+    "https://bing.nxingcloud.co/api/?thumbnail=25&date=" + newdate;
+  var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&date=" + newdate;
+  var newdiv = document.getElementById(divID);
+  newdiv.setAttribute("id", newdivID);
+  newdiv.setAttribute("data-date", newdate);
+  var newimg = document.getElementById(imgID);
+  newimg.setAttribute("id", newimgID);
+  newimg.setAttribute("src", newsrc);
+  newimg.setAttribute("data-src", newdatasrc); 
+}
+function dateFormat(date){
+  let day = date.getDate();
+  let month = date.getMonth();
+  let year = date.getFullYear();
+  let date_new = day + "-" + monther[month] + "-" + year;
+  return date_new;
 }
 function getText1() {
   $.ajax({

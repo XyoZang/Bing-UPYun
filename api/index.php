@@ -1,7 +1,6 @@
 <?php
 /*
-版权信息可删除，但请勿修改
-Copyright © 2020 by m@mcloc.cn
+Copyright © 2022 by me@xenns.com
 */
 
 //获取参数
@@ -11,6 +10,7 @@ $day = $_REQUEST['day'];
 $type = $_REQUEST['type'];
 $random = $_REQUEST['random'];
 $thumbnail = $_REQUEST['thumbnail'];
+$date = $_REQUEST['date'];  //15-Sep-2022
 
 //引入配置文件
 $config = include 'php/config.php';
@@ -28,6 +28,13 @@ $mysqlDbname = $config['mysqlDbname'];
 
 //建立数据库连接
 $conn = mysqli_connect($mysqlHost, $mysqlUsername, $mysqlPassword, $mysqlDbname);
+
+if ($date){
+    $date_now=date("d-M-Y");
+    $datenow=strtotime($date_now);
+    $date1=strtotime($date);
+    $day = round(($datenow-$date1)/3600/24);
+}
 
 if ($type == "json") {
 
