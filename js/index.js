@@ -7,7 +7,7 @@ if (getQueryVariable("p")) {
 } else {
   var p = 1;
 }
-var num = (date_now - start_date) / (1000 * 3600 * 24);
+var num = (date_now-start_date) / (1000 * 3600 * 24);
 var days = parseInt(Math.ceil(num));  // 运行日期，即总共图片数
 var pmax = Math.floor(days/9)+((days%9!=0)?1:0);
 if (p > pmax || p < 1) {
@@ -17,7 +17,7 @@ if (p == 1) {
   $("#carousel-1").attr({
     "data-src": "https://bing.nxingcloud.co/api/?date=" + dateFormat(date_now),
     "src": "https://bing.nxingcloud.co/api/?date="+dateFormat(date_now)+"&thumbnail=1"
-  })
+  });
   var car=new Date();
   $("#carousel-2").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));
   $("#carousel-3").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));

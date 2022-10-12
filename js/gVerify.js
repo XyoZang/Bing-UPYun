@@ -7,7 +7,7 @@
             height: "80", //默认canvas高度
             type: "blend", //图形验证码默认类型blend:数字字母混合类型、number:纯数字、letter:纯字母
             code: ""
-        }
+        };
         
         if(Object.prototype.toString.call(options) == "[object Object]"){//判断传入参数类型
             for(var i in options) { //根据传入的参数，修改默认参数值
@@ -119,7 +119,7 @@
                 return false;
             }
         }
-    }
+    };
     /**生成字母数组**/
     function getAllLetter() {
         var letterStr = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z";
