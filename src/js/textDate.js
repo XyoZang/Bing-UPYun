@@ -7,13 +7,20 @@ if (getQueryVariable("p")) {
 } else {
   var p = 1;
 }
-var num = (date_now - start_date) / (1000 * 3600 * 24);
+var num = (date_now-start_date) / (1000 * 3600 * 24);
 var days = parseInt(Math.ceil(num));  // 运行日期，即总共图片数
 var pmax = Math.floor(days/9)+((days%9!=0)?1:0);
 if (p > pmax || p < 1) {
   window.location.href = "/404.html";
 }
 if (p == 1) {
+  $("#carousel-1").attr({
+    "data-src": "https://bing.nxingcloud.co/api/?date=" + dateFormat(date_now),
+    "src": "https://bing.nxingcloud.co/api/?date="+dateFormat(date_now)+"&thumbnail=1"
+  });
+  var car=new Date();
+  $("#carousel-2").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));
+  $("#carousel-3").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));
   $('#carouselExampleCaptions').show();
   imgpro("#carousel-js");
 }
@@ -179,5 +186,4 @@ function getText2() {
         (p-1)*9+imax-1 < dayj || ((dayj += 1), (dayk += 1), date_back(dateText2), getText2());
     },
   });
-  console.log(dateFormat(dateText2));
 }
