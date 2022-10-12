@@ -8,26 +8,13 @@ $(".include").each(function() {
   }
 });
 var upyunDom = "https://ubing.nxingcloud.co/";
+var monther = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 function todayTimeEn(e) {
   var t = new Date();
   t.setDate(t.getDate() - e);
-  var n = new Array(
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ),
-    r = t.getMonth(),
+  var r = t.getMonth(),
     a = t.getDate();
-  return a < 10 && (a = "0" + a), a + "-" + n[r] + "-" + t.getFullYear();
+  return a < 10 && (a = "0" + a), a + "-" + monther[r] + "-" + t.getFullYear();
 }
 var today = todayTimeEn(0);
 function getImgUrlHd(e) {
@@ -108,8 +95,8 @@ function veryfier(Url,Way){
         download_img(Url,Way);
     } else if($.cookie(Url)<=5){
         $('#verifyModal').modal();
-        document.getElementById("my_button").onclick = function(){
-            var res = verifyCode.validate(document.getElementById("code_input").value);
+        $("#my_button").click(function(){
+          var res = verifyCode.validate($("#code_input").val());
             if(res){
                 download_img(Url,Way);
                 Swal.fire({
@@ -127,7 +114,7 @@ function veryfier(Url,Way){
                     confirmButtonText: "确定",
                 });
             }
-        }
+        });
     } else{
       $.post("../api/mailto.php",
         {

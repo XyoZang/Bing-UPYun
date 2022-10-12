@@ -2,39 +2,32 @@
 var start_str = "2022/09/09";
 var start_date = new Date(start_str);
 var date_now = new Date();
-var monther = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 if (getQueryVariable("p")) {
   var p = parseInt(getQueryVariable("p"));
 } else {
   var p = 1;
 }
 var num = (date_now - start_date) / (1000 * 3600 * 24);
-var days = parseInt(Math.ceil(num));
-var pmax = Math.floor(days / 9);
-if (days % 9 != 0) {
-  pmax += 1;
-}
+var days = parseInt(Math.ceil(num));  // 运行日期，即总共图片数
+var pmax = Math.floor(days/9)+((days%9!=0)?1:0);
 if (p > pmax || p < 1) {
   window.location.href = "/404.html";
 }
 if (p == 1) {
-  document.getElementById("carouselExampleCaptions").style.display = "block";
+  $('#carouselExampleCaptions').show();
   imgpro("#carousel-js");
 }
 if (p == pmax && days % 9 != 0) {
   var imax = (days % 9) - 1;
   for (var i = 8; i > imax; i--) {
     var nodiv = "pic-js-son" + i;
-    var dediv = document.getElementById(nodiv);
-    dediv.parentNode.removeChild(dediv);
+    $("#"+nodiv).remove();
   }
 } else {
   var imax = 8;
 }
 for (var i = 0; i <= imax; i++) {
   newdiv_date(i);
-  var ele = "#pic-js-son" + ((p - 1) * 9 + i);
-  imgpro(ele);
 }
 $("#pic-js").on("click", ".pic-item", function () {
   window.location.href = "detail/?date=" + $(this).attr("data-date");
@@ -44,12 +37,12 @@ getText1();
 var dayj = (p - 1) * 9;
 var dayk = 0;
 getText2();
-document.getElementById("pagenumber").innerHTML = p + " / " + pmax;
+$("#pagenumber").html(p + " / " + pmax);
 for (var i = 1; i <= pmax; i++) {
-  document.getElementById("pagelist").innerHTML +=
-    '<a id="page' + i +'"class="dropdown-item" href="/?p=' + i + '">第 ' + i + " 页</a>";
+  var pageurl = '<a id="page' + i +'"class="dropdown-item" href="/?p=' + i + '">第 ' + i + " 页</a>";
+  $("#pagelist").append(pageurl);
 }
-document.getElementById("page"+p).className += ' disabled';
+$("#page"+p).addClass("disabled");
 function pager(fx) {
   switch (fx) {
     case "back":
@@ -113,24 +106,20 @@ function getQueryVariable(variable) {
 // }
 function newdiv_date(ID){
   var divID = "pic-js-son" + ID,
-    imgID = "img-day" + ID;
-  var newdayID = ID + (p - 1) * 9;
-  var newdivID = "pic-js-son" + newdayID;
-  var newimgID = "img-day" + newdayID;
-  var newdate=new Date();
+    imgID = "img-day" + ID,
+    newdayID = ID + (p - 1) * 9,
+    newdivID = "pic-js-son" + newdayID,
+    newimgID = "img-day" + newdayID,
+    newdate=new Date();
   newdate = newdate.setDate(newdate.getDate()-newdayID);
   newdate = new Date(newdate);
   newdate = dateFormat(newdate);
   var newdatasrc =
     "https://bing.nxingcloud.co/api/?thumbnail=25&date=" + newdate;
   var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&date=" + newdate;
-  var newdiv = document.getElementById(divID);
-  newdiv.setAttribute("id", newdivID);
-  newdiv.setAttribute("data-date", newdate);
-  var newimg = document.getElementById(imgID);
-  newimg.setAttribute("id", newimgID);
-  newimg.setAttribute("src", newsrc);
-  newimg.setAttribute("data-src", newdatasrc); 
+  $("#"+divID).attr({"id": newdivID,"data-date": newdate});
+  $("#"+imgID).attr({"id": newimgID,"src": newsrc,"data-src": newdatasrc});
+  imgpro("#"+newdivID);
 }
 function dateFormat(date){
   let day = date.getDate();
