@@ -14,13 +14,6 @@ if (p > pmax || p < 1) {
   window.location.href = "/404.html";
 }
 if (p == 1) {
-  $("#carousel-1").attr({
-    "data-src": "https://bing.nxingcloud.co/api/?date=" + dateFormat(date_now),
-    "src": "https://bing.nxingcloud.co/api/?date="+dateFormat(date_now)+"&thumbnail=1"
-  })
-  var car=new Date();
-  $("#carousel-2").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));
-  $("#carousel-3").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));
   $('#carouselExampleCaptions').show();
   imgpro("#carousel-js");
 }
@@ -42,10 +35,16 @@ for (var i = 0; i <= imax; i++) {
 $("#pic-js").on("click", ".pic-item", function () {
   window.location.href = "detail/?date=" + $(this).attr("data-date");
 });
+var dateText1 = new Date();
+dateText1 = dateText1.setDate(dateText1.getDate()-(p-1)*9);
+dateText1 = new Date(dateText1);
 var dayi = (p - 1) * 9;
 getText1();
 var dayj = (p - 1) * 9;
 var dayk = 0;
+var dateText2 = new Date();
+dateText2 = dateText2.setDate(dateText2.getDate()-(p-1)*9);
+dateText2 = new Date(dateText2);
 getText2();
 $("#pagenumber").html(p + " / " + pmax);
 for (var i = 1; i <= pmax; i++) {
@@ -146,7 +145,7 @@ function getText1() {
     type: "GET",
     async: !0,
     url: "https://bing.nxingcloud.co/api/",
-    data: "type=json&day=" + dayi,
+    data: "type=json&date=" + dateFormat(dateText1),
     success: function (a) {
       var e = $.parseJSON(a).bing_title,
         t =
@@ -156,7 +155,7 @@ function getText1() {
           e +
           "</p>\n            ";
       $(".carousel-caption").eq(dayi).empty().append(t),
-        1 < dayi || ((dayi += 1), getText1());
+        1 < dayi || ((dayi += 1), date_back(dateText1), getText1());
     },
   });
 }
@@ -165,7 +164,7 @@ function getText2() {
     type: "GET",
     async: !0,
     url: "https://bing.nxingcloud.co/api/",
-    data: "type=json&day=" + dayj,
+    data: "type=json&date=" + dateFormat(dateText2),
     success: function (a) {
       var e = $.parseJSON(a),
         t = e.bing_title,
@@ -177,7 +176,8 @@ function getText2() {
         "</span><br>" +
         (c = c.replace(/\s*$/g, ""))),
         $("#pic-js").children().eq(dayk).children("p").empty().append(c),
-        (p - 1) * 9 + imax - 1 < dayj || ((dayj += 1), (dayk += 1), getText2());
+        (p-1)*9+imax-1 < dayj || ((dayj += 1), (dayk += 1), date_back(dateText2), getText2());
     },
   });
+  console.log(dateFormat(dateText2));
 }
