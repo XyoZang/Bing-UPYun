@@ -6,11 +6,11 @@
 >
 >本网站的源码来自[小马奔腾](https://github.com/androidmumo/Bing-upyun)。
 >
->本站点修改了部分源代码，并增加了一些新功能，详细更改如下：
+>本站对源代码进行了修改，并增加了一些新功能，详细更改如下：
 >
->1、添加API的random参数，实现随机获取一张图片。
+>1、添加API的random参数与date参数，实现随机获取一张图片或指定日期获取图片。
 >
->2、增加了获取指定日期的图片的功能。
+>2、修改页面加载方式，解决CDN缓存更新问题。
 >
 >3、增加了分页功能与翻页按钮、跳转按钮，展示本站所有的图片。
 >
@@ -33,6 +33,7 @@
 >12、增加了多次下载时弹窗验证码验证，防止恶意攻击
 >
 >13、前端导航栏、页脚等公共部分组件化
+>
 
 
 
@@ -49,7 +50,7 @@
 - 多次下载时验证码弹窗
 
 
-<img src="https://cdn.nxingcloud.co/images/posts/bing/screenshot-bing-033efc0997daaf28c6b981124e87d470-a8b568.jpg" alt="screenshot-bing" style="zoom:50%;" />
+<img src="https://cdn.nxingcloud.co/images/posts/bing/bingdetail.png" alt="screenshot-bing" style="zoom:50%;" />
 
 
 
@@ -77,13 +78,13 @@ https://bing.nxingcloud.co/
 
 ##### 2.2 前端效果（首页）
 
-<img src="https://cdn.nxingcloud.co/images/posts/bing/screenshot-bing -2--420b713e3f8f1f2d3f623853a15bd279-00730a.jpg" alt="screenshot-bing" style="zoom:50%;" />
+<img src="https://cdn.nxingcloud.co/images/posts/bing/bing.png" alt="screenshot-bing" style="zoom:50%;" />
 
 
 
 ##### 2.3 前端特性
 
-用到的库或者框架有：Bootstrap4、jQuery1.11.0、PHPMailer、LightGallery、Artalk、[progressive-image](https://github.com/ccforward/progressive-image)。
+用到的库或者框架有：Bootstrap4、jQuery、PHPMailer、LightGallery、Artalk、[progressive-image](https://github.com/ccforward/progressive-image)。
 
 - 响应式
 
@@ -114,9 +115,12 @@ https://bing.nxingcloud.co/
 |   gray    |      否      |         true/false         |      灰阶图片/正常色彩图片      |                              -                               |
 |    day    |      否      |  数字n（大于等于0的正整数）  |           n天前的图片           |                  n的范围取决于程序运行天数                   |
 | thumbnail |      否      |            1/25            | 16×9像素或以25%比例缩放的缩略图 | 只支持1/25两个等级，16×9像素的缩略图用来实现前端图片的渐进加载 |
-|  random   |      否      |        true/false          |                -                |       随机返回自网站开始运行至当前时间任意一天的图片         |
+|  random   |      否      |        true/false          |     自网站开始运行至当前时间任意一天的图片    |      -         |
+|  date     |      否      |        d-M-y格式日期        |         具体到某一天的图片            |            使用时注意格式，例: 18-Sep-2022             |
 
-注意：`day` 和 `random` 两者之间只能选择一个参数，这两者参数和其余参数可以组合使用，除此之外的其他参数之间暂不支持组合使用。例如，不能返回灰阶的高斯模糊图片，可以返回n天前的高斯模糊图片。
+注意：`day` 、`date`和 `random` 三者均属于指定某一图片的参数，只能选择一个，这三者和其余参数可以组合使用，除此之外的其他参数之间暂不支持组合使用。例如，不能返回灰阶的高斯模糊图片，可以返回n天前的高斯模糊图片。
+
+月份简写列表："Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
 
 
 
@@ -202,30 +206,30 @@ https://bing.nxingcloud.co/api/
 
     ├── api
     │   ├── php
-    │   │	├── bing		// 图片缓存文件夹
+    │   │	├── bing	// 图片缓存文件夹
     │   │   ├── phpmailer   // 邮件依赖库文件夹
     │   │	├── config.php	// 配置文件
+    │   │	├── mail.php	// PHPMailer封装文件
     │   │   └── index.php	// 后台图片处理程序
-    │   └── index.php		// 图片调用接口
+    │   └── index.php	// 图片调用接口
     ├── css
-    │   ├── about           // 关于界面文件夹
-    │   ├── fonts           // 关于界面资源文件夹
+    │   ├── about.css       // 关于页样式表
     │   ├── pics.css        // 画廊模式样式表
-    │   ├── detail.css		// 详情页样式表
-    │   ├── index.css		// 首页样式表
-    │   └── main.css		// 主样式表
+    │   ├── detail.css	// 详情页样式表
+    │   ├── index.css	// 首页样式表
+    │   └── main.css	// 主样式表
     ├── detail
-    │   └── index.html		// 详情页
+    │   └── index.html	// 详情页
     ├── about
     │    └── index.html     // 关于本站
     ├── docs
     │    └── index.html     // API文档
     ├── js
-    │   ├── detail.js		// 详情页js
-    │   ├── index.js		// 首页js
+    │   ├── detail.js	// 详情页js
+    │   ├── index.js	// 首页js
     │   ├── pics.js         // 画廊模式js
-    │   └── main.js			// 主js
-    ├── lib					//第三方库
+    │   └── main.js		// 主js
+    ├── lib			//第三方库
     │   ├── layer
     │   ├── LightGallery
     │   ├── bootstrap.min.css.map
@@ -235,10 +239,10 @@ https://bing.nxingcloud.co/api/
     │   ├── jquery-1.11.0.js
     │   ├── progressive-image.css
     │   └── progressive-image.js
-    ├── static				//静态资源
+    ├── static		//静态资源
     │   ├── icons8-bing-32.ico
     │   └── upyun_logo5.png
-    └── index.html			// 首页
+    └── index.html	// 首页
 
 
 ##### 4.1.3 配置信息
