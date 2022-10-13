@@ -115,7 +115,7 @@ https://bing.nxingcloud.co/
 |   gray    |      否      |         true/false         |      灰阶图片/正常色彩图片      |                              -                               |
 |    day    |      否      |  数字n（大于等于0的正整数）  |           n天前的图片           |                  n的范围取决于程序运行天数                   |
 | thumbnail |      否      |            1/25            | 16×9像素或以25%比例缩放的缩略图 | 只支持1/25两个等级，16×9像素的缩略图用来实现前端图片的渐进加载 |
-|  random   |      否      |        true/false          |     自网站开始运行至当前时间任意一天的图片    |      -         |
+|  random   |      否      |    true/false        |     自网站开始运行至当前时间随机一天的图片  |请加上index.php以避开CDN缓存，即···/api/index.php?random=true|
 |  date     |      否      |        d-M-y格式日期        |         具体到某一天的图片            |            使用时注意格式，例: 18-Sep-2022             |
 
 注意：`day` 、`date`和 `random` 三者均属于指定某一图片的参数，只能选择一个，这三者和其余参数可以组合使用，除此之外的其他参数之间暂不支持组合使用。例如，不能返回灰阶的高斯模糊图片，可以返回n天前的高斯模糊图片。
@@ -206,43 +206,38 @@ https://bing.nxingcloud.co/api/
 
     ├── api
     │   ├── php
-    │   │	├── bing	// 图片缓存文件夹
+    │   │	├── bing        // 图片缓存文件夹
     │   │   ├── phpmailer   // 邮件依赖库文件夹
     │   │	├── config.php	// 配置文件
     │   │	├── mail.php	// PHPMailer封装文件
     │   │   └── index.php	// 后台图片处理程序
-    │   └── index.php	// 图片调用接口
+    │   ├── mailto.php      // 前端邮件调用接口  
+    │   └── index.php       // 图片调用接口
     ├── css
     │   ├── about.css       // 关于页样式表
     │   ├── pics.css        // 画廊模式样式表
-    │   ├── detail.css	// 详情页样式表
-    │   ├── index.css	// 首页样式表
-    │   └── main.css	// 主样式表
+    │   ├── detail.css      // 详情页样式表
+    │   ├── index.css       // 首页样式表
+    │   └── main.css        // 主样式表
     ├── detail
-    │   └── index.html	// 详情页
+    │   └── index.html      // 详情页
     ├── about
     │    └── index.html     // 关于本站
     ├── docs
     │    └── index.html     // API文档
     ├── js
-    │   ├── detail.js	// 详情页js
-    │   ├── index.js	// 首页js
+    │   ├── detail.js       // 详情页js
+    │   ├── index.js        // 首页js
     │   ├── pics.js         // 画廊模式js
-    │   └── main.js		// 主js
-    ├── lib			//第三方库
-    │   ├── layer
+    │   └── main.js	        // 主js
+    ├── lib                 //第三方库
     │   ├── LightGallery
-    │   ├── bootstrap.min.css.map
-    │   ├── bootstrap.min.css
-    │   ├── bootstrap.min.js.map
-    │   ├── bootstrap.min.js
-    │   ├── jquery-1.11.0.js
     │   ├── progressive-image.css
     │   └── progressive-image.js
-    ├── static		//静态资源
+    ├── static              //静态资源
     │   ├── icons8-bing-32.ico
     │   └── upyun_logo5.png
-    └── index.html	// 首页
+    └── index.html          // 首页
 
 
 ##### 4.1.3 配置信息

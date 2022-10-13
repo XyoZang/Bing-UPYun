@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2042758_2fi5tvz8vl4.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/c/font_3663794_n7525ypef3n.css">
     <script async defer data-website-id="6264fbba-f3be-4116-bad8-f1a94d822ab9" src="https://uma.nxingcloud.co/xuezm.js"></script>
-    <link href="https://bing.nxingcloud.co/lib/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://bing.nxingcloud.co/lib/progressive-image.css">
     <link rel="stylesheet" href="https://bing.nxingcloud.co/css/main.css">
     <link rel="stylesheet" type="text/css" href="../css/about.css">
@@ -69,11 +69,12 @@
             <td align="center">random</td>
             <td align="center">否</td>
             <td align="center">true/false</td>
-            <td align="center">-</td>
-            <td align="center">随机返回自网站开始运行至当前时间任意一天的图片</td>
+            <td align="center">自网站开始运行至当前时间随机一天的图片</td>
+            <td align="center">请加上index.php以避开CDN缓存，即···/api/index.php?random=true</td>
             </tr>
             </tbody></table>
-            <p>注意：<code>day</code> 和 <code>random</code> 两者之间只能选择一个参数，这两者参数和其余参数可以组合使用，除此之外的其他参数之间暂不支持组合使用。例如，不能返回灰阶的高斯模糊图片，可以返回n天前的高斯模糊图片。</p>
+            <p>注意：<code>day</code>、<code>date</code>和 <code>random</code> 三者均属于指定某一图片的参数，只能选择一个，这三者和其余参数可以组合使用，除此之外的其他参数之间暂不支持组合使用。例如，不能返回灰阶的高斯模糊图片，可以返回n天前的高斯模糊图片。</p>
+            <p>月份简写列表："Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"</p>
             <h2 id="json数据格式：">json数据格式：</h2>
             <pre><code>{
     &quot;bing_id&quot;: &quot;21&quot;,
@@ -161,7 +162,7 @@
             <h2 id="api接口">API接口</h2>
             <pre><code>https://bing.nxingcloud.co/api/</code></pre>
             <p>此接口为<a href="https://nxingcloud.co/">@Xenns</a>免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。<br></p>
-            <p style="text-align:right">2022-09-09 By <a href="https://nxingcloud.co" target="_blank">Xenns</a></p>
+            <p style="text-align:right">更新于：2022-10-13  By<a href="https://nxingcloud.co" target="_blank">Xenns</a></p>
             <link href="https://cdn.nxingcloud.co/Artalk-1bffefce.css" rel="stylesheet">
             <script src="https://cdn.nxingcloud.co/Artalk-c4859270.js"></script>
             <div id="vcomments"></div>
