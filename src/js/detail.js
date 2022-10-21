@@ -44,7 +44,7 @@ new Artalk({
     el:        '#vcomments',              // 绑定元素的 Selector
     pageKey:   '',                // 固定链接 (留空自动获取)
     pageTitle: '', // 页面标题 (留空自动获取)
-    server:    'https://artalk.nxingcloud.co',  // 后端地址
+    server:    'https://artalk.xenns.com',  // 后端地址
     site:      '必应每日一图',           // 你的站点名
   })
 

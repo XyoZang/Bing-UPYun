@@ -45,7 +45,7 @@ $("title").text(imgTit),
     el: "#vcomments",
     pageKey: `/detail/?date=${imgSubDate}`,
     pageTitle: "",
-    server: "https://artalk.nxingcloud.co",
+    server: "https://artalk.xenns.com",
     site: "必应每日一图",
     emoticons: [
       "https://cdn.nxingcloud.co/images/emoji/bilibili2233/bilibili2233.json",
