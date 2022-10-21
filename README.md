@@ -71,7 +71,7 @@
 ##### 2.1 前端 DEMO
 
 ```
-https://bing.nxingcloud.co/
+https://bing.xenns.com/
 ```
 
 
@@ -163,7 +163,7 @@ https://bing.nxingcloud.co/
 ##### 3.2 接口DEMO
 
 ```
-https://bing.nxingcloud.co/api/
+https://bing.xenns.com/api/
 ```
 
 此接口为[@Xenns](https://nxingcloud.co/)免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。
@@ -368,5 +368,5 @@ js/pics.js
 
 替换方法：
 
-1. 全局搜索替换，将 `https://bing.nxingcloud.co/` 替换为您部署的域名。
+1. 全局搜索替换，将 `https://bing.xenns.com/` 替换为您部署的域名。
 2. 将 `js/main.js` 中的 `https://ubing.nxingcloud.co/` 替换为您的又拍云存储加速域名。

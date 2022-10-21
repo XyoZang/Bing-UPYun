@@ -54,7 +54,7 @@ function getText1() {
     $.ajax({
         type: "GET",
         async: true,
-        url: "https://bing.nxingcloud.co/api/",
+        url: "https://bing.xenns.com/api/",
         data: `type=json&day=${dayi}`,
         success: function (msg) {
             var imgMsg = $.parseJSON(msg);
@@ -90,7 +90,7 @@ function getText2() {
     $.ajax({
         type: "GET",
         async: true,
-        url: "https://bing.nxingcloud.co/api/",
+        url: "https://bing.xenns.com/api/",
         data: `type=json&day=${dayj}`,
         success: function (msg) {
             var imgMsg = $.parseJSON(msg);

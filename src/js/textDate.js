@@ -15,12 +15,12 @@ if (p > pmax || p < 1) {
 }
 if (p == 1) {
   $("#carousel-1").attr({
-    "data-src": "https://bing.nxingcloud.co/api/?date=" + dateFormat(date_now),
-    "src": "https://bing.nxingcloud.co/api/?date="+dateFormat(date_now)+"&thumbnail=1"
+    "data-src": "https://bing.xenns.com/api/?date=" + dateFormat(date_now),
+    "src": "https://bing.xenns.com/api/?date="+dateFormat(date_now)+"&thumbnail=1"
   });
   var car=new Date();
-  $("#carousel-2").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));
-  $("#carousel-3").attr("src","https://bing.nxingcloud.co/api/?date="+date_back(car));
+  $("#carousel-2").attr("src","https://bing.xenns.com/api/?date="+date_back(car));
+  $("#carousel-3").attr("src","https://bing.xenns.com/api/?date="+date_back(car));
   $('#carouselExampleCaptions').show();
   imgpro("#carousel-js");
 }
@@ -110,8 +110,8 @@ function getQueryVariable(variable) {
 //   var newdivID = "pic-js-son" + newdayID;
 //   var newimgID = "img-day" + newdayID;
 //   var newdatasrc =
-//     "https://bing.nxingcloud.co/api/?thumbnail=25&day=" + newdayID;
-//   var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&day=" + newdayID;
+//     "https://bing.xenns.com/api/?thumbnail=25&day=" + newdayID;
+//   var newsrc = "https://bing.xenns.com/api/?thumbnail=1&day=" + newdayID;
 //   var newdiv = document.getElementById(divID);
 //   newdiv.setAttribute("id", newdivID);
 //   newdiv.setAttribute("data-day", newdayID);
@@ -134,8 +134,8 @@ function newdiv_date(ID){
     newimgID = "img-day" + newdayID;
   var newdate = date_back(datediv);
   var newdatasrc =
-    "https://bing.nxingcloud.co/api/?thumbnail=25&date=" + newdate;
-  var newsrc = "https://bing.nxingcloud.co/api/?thumbnail=1&date=" + newdate;
+    "https://bing.xenns.com/api/?thumbnail=25&date=" + newdate;
+  var newsrc = "https://bing.xenns.com/api/?thumbnail=1&date=" + newdate;
   $("#"+divID).attr({"id": newdivID,"data-date": newdate});
   $("#"+imgID).attr({"id": newimgID,"src": newsrc,"data-src": newdatasrc});
   imgpro("#"+newdivID);
@@ -151,7 +151,7 @@ function getText1() {
   $.ajax({
     type: "GET",
     async: !0,
-    url: "https://bing.nxingcloud.co/api/",
+    url: "https://bing.xenns.com/api/",
     data: "type=json&date=" + dateFormat(dateText1),
     success: function (a) {
       var e = $.parseJSON(a).bing_title,
@@ -170,7 +170,7 @@ function getText2() {
   $.ajax({
     type: "GET",
     async: !0,
-    url: "https://bing.nxingcloud.co/api/",
+    url: "https://bing.xenns.com/api/",
     data: "type=json&date=" + dateFormat(dateText2),
     success: function (a) {
       var e = $.parseJSON(a),
