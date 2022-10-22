@@ -42,16 +42,16 @@ $("#nav").on('click','#btnHome',function(){
 $("#nav").on('click','#btnGallery',function(){
   window.location.href = "/pics/";
 });
-var verifyCode;
+var verifyCode = new GVerify("v_container");
 $("#nav").on('click','#btnToday',function(){
-  if (!$("#v_container").html()){
-    verifyCode = new GVerify("v_container");
-  }
   veryfier(getImgUrlHd(today), "BingToday");
 });
 function download_img(Url, Way){
     // url: imgUrlHd/imgUrlUhd, way: bingHD, bingUhd
     var n = new XMLHttpRequest();
+    var a = parseInt($.cookie(Url))+1;
+    $.removeCookie(Url);
+    $.cookie(Url,a);
     switch (Way){
         case 'BingHd': 
             var imgName = Url.substr(-15, 15);
@@ -86,17 +86,13 @@ function download_img(Url, Way){
 function veryfier(Url,Way){
     if ($.cookie(Url)==undefined){
         $.cookie(Url,1);
-    } else{
-        var a = parseInt($.cookie(Url))+1;
-        $.removeCookie(Url);
-        $.cookie(Url,a);
     }
     if ($.cookie(Url)<=2){
         download_img(Url,Way);
     } else if($.cookie(Url)<=5){
         $('#verifyModal').modal();
-        $("#my_button").click(function(){
-          var res = verifyCode.validate($("#code_input").val());
+        document.getElementById("my_button").onclick = function(){
+            var res = verifyCode.validate($("#code_input").val());
             if(res){
                 download_img(Url,Way);
                 Swal.fire({
@@ -114,7 +110,7 @@ function veryfier(Url,Way){
                     confirmButtonText: "确定",
                 });
             }
-        });
+        };
     } else{
       $.post("../api/mailto.php",
         {

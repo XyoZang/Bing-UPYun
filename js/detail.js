@@ -43,7 +43,7 @@ $("title").text(imgTit),
     ),
   new Artalk({
     el: "#vcomments",
-    pageKey: `/detail/?date=${imgSubDate}`,
+    pageKey: "",
     pageTitle: "",
     server: "https://artalk.xenns.com",
     site: "必应每日一图",
@@ -56,13 +56,13 @@ var modalImgStr =
   '\n<img class="rounded img-fluid" src="https://bing.xenns.com/api/?date=' +
   daydata +
   '" alt="">\n';
-$(".modal-img-wrap").empty().append(modalImgStr),
-  $("#btnHd").click(function () {
-    veryfier(imgUrlHd, "BingHd");
-  }),
-  $("#btnUhd").click(function () {
-    veryfier(imgUrlUhd, "BingUhd");
-  });
+$(".modal-img-wrap").empty().append(modalImgStr);
+$("#btnHd").click(function () {
+  veryfier(imgUrlHd, "BingHd");
+});
+$("#btnUhd").click(function () {
+  veryfier(imgUrlUhd, "BingUhd");
+});
 var gallerycontainer = document.getElementById("detail-gallery");
 lightGallery(gallerycontainer, {
   plugins: [lgZoom, lgFullscreen],

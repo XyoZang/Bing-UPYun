@@ -22,6 +22,11 @@ if (p == 1) {
   $("#carousel-2").attr("src","https://bing.xenns.com/api/?date="+date_back(car));
   $("#carousel-3").attr("src","https://bing.xenns.com/api/?date="+date_back(car));
   $('#carouselExampleCaptions').show();
+  var dateText1 = new Date();
+  dateText1 = dateText1.setDate(dateText1.getDate()-(p-1)*9+1);
+  dateText1 = new Date(dateText1);
+  var dayi = 0;
+  getText1();
   imgpro("#carousel-js");
 }
 if (p == pmax && days % 9 != 0) {
@@ -42,10 +47,11 @@ for (var i = 0; i <= imax; i++) {
 $("#pic-js").on("click", ".pic-item", function () {
   window.location.href = "detail/?date=" + $(this).attr("data-date");
 });
-var dayi = (p - 1) * 9;
-getText1();
-var dayj = (p - 1) * 9;
+var dayj = 0;
 var dayk = 0;
+var dateText2 = new Date();
+dateText2 = dateText2.setDate(dateText2.getDate()-(p-1)*9+1);
+dateText2 = new Date(dateText2);
 getText2();
 $("#pagenumber").html(p + " / " + pmax);
 for (var i = 1; i <= pmax; i++) {
@@ -146,7 +152,7 @@ function getText1() {
     type: "GET",
     async: !0,
     url: "https://bing.xenns.com/api/",
-    data: "type=json&day=" + dayi,
+    data: "type=json&date=" + date_back(dateText1),
     success: function (a) {
       var e = $.parseJSON(a).bing_title,
         t =
@@ -165,7 +171,7 @@ function getText2() {
     type: "GET",
     async: !0,
     url: "https://bing.xenns.com/api/",
-    data: "type=json&day=" + dayj,
+    data: "type=json&date=" + date_back(dateText2),
     success: function (a) {
       var e = $.parseJSON(a),
         t = e.bing_title,
@@ -177,7 +183,7 @@ function getText2() {
         "</span><br>" +
         (c = c.replace(/\s*$/g, ""))),
         $("#pic-js").children().eq(dayk).children("p").empty().append(c),
-        (p - 1) * 9 + imax - 1 < dayj || ((dayj += 1), (dayk += 1), getText2());
+        imax - 1 < dayj || ((dayj += 1), (dayk += 1), getText2());
     },
   });
 }
