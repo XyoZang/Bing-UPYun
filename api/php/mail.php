@@ -37,7 +37,7 @@ function send_email($to="",$subject='',$content='<h1>Hello World</h1>'){
         // 0 = off (for production use)
         // 1 = client messages
         // 2 = client and server messages
-        //$mail->SMTPDebug = 2;
+        // $mail->SMTPDebug = 2;
         //调试输出格式
         //$mail->Debugoutput = 'html';
 
@@ -47,7 +47,7 @@ function send_email($to="",$subject='',$content='<h1>Hello World</h1>'){
         $mail->Host = $mailHost; // 链接邮箱的服务器地址
         $mail->Username = $mailUsername; // smtp登录的账号 QQ邮箱即可
         $mail->Password = $mailPassword; // smtp登录的密码 使用生成的授权码
-        $mail->SMTPSecure = 'ssl'; // 设置使用ssl加密方式登录鉴权
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // 设置使用ssl加密方式登录鉴权
         $mail->Port = $mailPort; // 设置ssl连接smtp服务器的远程服务器端口号
         $mail->CharSet = 'UTF-8'; // 设置发送的邮件的编码
 

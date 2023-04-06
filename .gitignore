@@ -1,3 +1,5 @@
 node_modules
 .htaccess
 .user.ini
+
+api/php/config.php
