@@ -40,18 +40,7 @@ $("title").text(imgTit),
         imgSubDate +
         "</span>&nbsp;" +
         imgTit
-    ),
-  new Artalk({
-    el: "#vcomments",
-    pageKey: "",
-    pageTitle: "",
-    server: "https://artalk.xenns.com",
-    site: "必应每日一图",
-    emoticons: [
-      "https://cdn.nxingcloud.co/images/emoji/bilibili2233/bilibili2233.json",
-      "https://cdn.nxingcloud.co/images/emoji/Tieba/Tieba.json",
-    ],
-  });
+    );
 var modalImgStr =
   '\n<img class="rounded img-fluid" src="https://bing.xenns.com/api/?date=' +
   daydata +
