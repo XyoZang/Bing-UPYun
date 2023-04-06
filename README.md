@@ -34,6 +34,7 @@
 >
 >13、前端导航栏、页脚等公共部分组件化
 >
+>14、优化资源链接方式
 
 
 
@@ -278,6 +279,15 @@ $config['mailContent']   = ["开始抓取今日图片···<br>"];
 
 ```
 
+在`js/config-sample.js`中修改：
+
+```javascript
+window.globalConfig = {
+    upyundom: '*************'  // 您的又拍云存储加速域名，注：保留末尾 “/”
+}
+```
+
+修改后请更名为`config.js`
 
 
 ##### 4.1.4 部署文件到服务器
@@ -347,28 +357,8 @@ CDN建议的缓存设置如下：
 
 本站使用Artalk作为评论系统，需另行部署。
 
-若部署Artalk后不知如何引入该项目中，请联系我的邮箱：nxingcloud@163.com
+若部署Artalk后不知如何引入该项目中，请联系我的邮箱：XyoZang@163.com
 
 若需要无后台评论系统可移步[原作者](https://github.com/androidmumo/Bing-upyun)参考Valine评论系统的使用。 
 
 
-###### 4.2.3.2 域名
-
-请查找并替换以下文件中的域名：
-
-```
-index.php
-detail/index.html
-docs/index.html
-pics/index.html
-about/index.html
-js/detail.js
-js/index.js
-js/main.js
-js/pics.js
-```
-
-替换方法：
-
-1. 全局搜索替换，将 `https://bing.xenns.com/` 替换为您部署的域名。
-2. 将 `js/main.js` 中的 `https://ubing.nxingcloud.co/` 替换为您的又拍云存储加速域名。

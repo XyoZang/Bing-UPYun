@@ -3,3 +3,4 @@ node_modules
 .user.ini
 
 api/php/config.php
+js/config.js

@@ -98,8 +98,8 @@ function newdiv(ID){
   var newdayID = ID+(p-1)*9;
   var newdivID = "pic-js-son" + newdayID;
   var newimgID = "img-day" + newdayID;
-  var newdatasrc = "https://bing.xenns.com/api/?thumbnail=25&day="+newdayID;
-  var newsrc = "https://bing.xenns.com/api/?thumbnail=1&day="+newdayID;
+  var newdatasrc = "/api/?thumbnail=25&day="+newdayID;
+  var newsrc = "/api/?thumbnail=1&day="+newdayID;
   // 运行
   var newdiv = document.getElementById(divID);
   newdiv.setAttribute("id", newdivID);
@@ -114,7 +114,7 @@ function getText1() {
   $.ajax({
     type: "GET",
     async: !0,
-    url: "https://bing.xenns.com/api/",
+    url: "/api/",
     data: "type=json&day=" + dayi,
     success: function (a) {
       var e = $.parseJSON(a).bing_title,
@@ -134,7 +134,7 @@ function getText2() {
   $.ajax({
     type: "GET",
     async: !0,
-    url: "https://bing.xenns.com/api/",
+    url: "/api/",
     data: "type=json&day=" + dayj,
     success: function (a) {
       var e = $.parseJSON(a),

@@ -7,7 +7,7 @@ $(".include").each(function() {
       })
   }
 });
-var upyunDom = "https://ubing.nxingcloud.co/";
+const UPYUNDOM = window.globalConfig.upyundom;
 var monther = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
 function todayTimeEn(e) {
   var t = new Date();
@@ -18,10 +18,10 @@ function todayTimeEn(e) {
 }
 var today = todayTimeEn(0);
 function getImgUrlHd(e) {
-  return upyunDom + "bing/" + e + "/" + e + ".jpg";
+  return UPYUNDOM + "bing/" + e + "/" + e + ".jpg";
 }
 function getImgUrlCom(e) {
-  return upyunDom + "bing/" + e + "/" + e + "-compress_25.jpg";
+  return UPYUNDOM + "bing/" + e + "/" + e + "-compress_25.jpg";
 }
 function imgpro(e) {
   new Progressive({
@@ -112,7 +112,7 @@ function veryfier(Url,Way){
             }
         };
     } else{
-      $.post("../api/mailto.php",
+      $.post("/api/mailto.php",
         {
           mailto: "z1304242002@163.com",
           mailsubject: "Bing-多次下载警告",

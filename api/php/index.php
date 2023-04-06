@@ -1,7 +1,7 @@
 <?php
 /*
 版权信息可删除，但请勿修改
-Copyright © 2020 by m@mcloc.cn
+Copyright © 2020 by me@xenns.com
 */
 //引入配置文件
 

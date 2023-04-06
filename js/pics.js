@@ -11,7 +11,7 @@ function getTitle(day) {
   $.ajax({
     type: "GET",
     async: false,
-    url: "https://bing.xenns.com/api/",
+    url: "/api/",
     data: "type=json&day=" + day,
     success: function (res) {
       Title = $.parseJSON(res).bing_title;
@@ -24,8 +24,8 @@ function GetPics(Element) {
     day = count + i;
     if (day < days) {
       data = {
-        src: "https://bing.xenns.com/api/?day=" + day,
-        thumb: "https://bing.xenns.com/api/?day=" + day + "&thumbnail=25",
+        src: "/api/?day=" + day,
+        thumb: "/api/?day=" + day + "&thumbnail=25",
         subHtml:
           `<div class="lightGallery-captions"><h2>` +
           getTitle(day) +

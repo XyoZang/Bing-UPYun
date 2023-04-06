@@ -3,11 +3,11 @@ var daydata = getUrlParam("date"),
   detailMsg = getImgMsg(daydata),
   imgTit = detailMsg.bing_title,
   bigImgStr =
-    '\n            <a href="https://bing.xenns.com/api/?date=' +
+    '\n            <a href="/api/?date=' +
     daydata +
-    '" alt=""><img data-src="https://bing.xenns.com/api/?date=' +
+    '" alt=""><img data-src="/api/?date=' +
     daydata +
-    '" src="https://bing.xenns.com/api/?date=' +
+    '" src="/api/?date=' +
     daydata +
     '&thumbnail=1" class="d-block w-100 rounded preview lazy" alt=' +
     imgTit +
@@ -18,7 +18,7 @@ function getImgMsg(a) {
     $.ajax({
       type: "GET",
       async: !1,
-      url: "https://bing.xenns.com/api/",
+      url: "/api/",
       data: "type=json&date=" + a,
       success: function (a) {
         e = $.parseJSON(a);
@@ -42,7 +42,7 @@ $("title").text(imgTit),
         imgTit
     );
 var modalImgStr =
-  '\n<img class="rounded img-fluid" src="https://bing.xenns.com/api/?date=' +
+  '\n<img class="rounded img-fluid" src="/api/?date=' +
   daydata +
   '" alt="">\n';
 $(".modal-img-wrap").empty().append(modalImgStr);

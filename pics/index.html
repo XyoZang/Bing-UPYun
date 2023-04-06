@@ -28,7 +28,7 @@
     
     <div class="card-gallery">
       <div class="img">
-        <img src="https://bing.xenns.com/api/?day=0" alt="Avatar">
+        <img src="/api/?day=0" alt="Avatar">
       </div>
       <div class="container-card">
         <button type="button" class="btn btn-info btn-gallery" id="dynamic-gallery-demo">画廊模式</button>
@@ -39,12 +39,38 @@
       </div>
     </div>
 
+    <div class="modal fade" id="verifyModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+  
+              <div class="modal-header">
+              <h4 class="modal-title">请输入验证码以继续</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+      
+              <div class="modal-body">
+                  <div id="v_container"></div>
+                  <input type="text" class="form-control" id="code_input" value="" placeholder="请输入验证码"/>
+              </div>
+      
+              <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="my_button">验证</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+              </div>
+      
+          </div>
+      </div>
+    </div>
+
     <!-- 页脚 -->
     <div class="include" file="/include/footer.html"></div>
     
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/lib/progressive-image.js"></script>
+    <script src="/js/gVerify.js"></script>
+    <script src="/js/config.js"></script>
     <script src="/js/main.js"></script>
     <script src="/lib/lightgallery/lightgallery.umd.js"></script>
     <script src="/lib/lightgallery/plugins/zoom/lg-zoom.umd.js"></script>
