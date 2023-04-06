@@ -2,7 +2,7 @@
 # 轻量必应每日一图接口/前端，支持上传到又拍云调用
 
 
-> Hi! 这里是 [@Xenns](https://xenns.com/)搭建的Bing 壁纸项目
+> Hi! 这里是 [@XyoZang](https://xenns.com/)搭建的Bing 壁纸项目
 >
 >本网站的源码来自[小马奔腾](https://github.com/androidmumo/Bing-upyun)。
 >
@@ -166,7 +166,7 @@ https://bing.xenns.com/
 https://bing.xenns.com/api/
 ```
 
-此接口为[@Xenns](https://xenns.com/)免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。
+此接口为[@XyoZang](https://xenns.com/)免费提供，支持最新的特性（可能含有Beta版功能），请合理使用。
 
 
 
@@ -242,7 +242,9 @@ https://bing.xenns.com/api/
 
 ##### 4.1.3 配置信息
 
-在 `api/php/config.php` 中修改：
+在 `api/php/config-sample.php` 中修改：
+
+修改后请更名为`config.php`
 
 ```php
 
