@@ -225,10 +225,16 @@ https://bing.xenns.com/api/
     ├── about
     │    └── index.html     // 关于本站
     ├── docs
-    │    └── index.html     // API文档
+    │    └── index.html     // API文档 
+    ├── include
+    │    ├── nav.html
+    │    └── footer.html
     ├── js
     │   ├── detail.js       // 详情页js
     │   ├── index.js        // 首页js
+    │   ├── config.js       // configjs
+    │   ├── gVerify.js      // 验证码js
+    │   ├── sweetalert2.all.min.js   // sweetalert
     │   ├── pics.js         // 画廊模式js
     │   └── main.js	        // 主js
     ├── lib                 //第三方库
