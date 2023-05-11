@@ -51,7 +51,7 @@
 - 多次下载时验证码弹窗
 
 
-<img src="https://cdn.nxingcloud.co/images/posts/bing/bingdetail.png" alt="screenshot-bing" style="zoom:50%;" />
+<img src="https://cdn.xenns.com/images/posts/bing/bingdetail.png" alt="screenshot-bing" style="zoom:50%;" />
 
 
 
@@ -79,7 +79,7 @@ https://bing.xenns.com/
 
 ##### 2.2 前端效果（首页）
 
-<img src="https://cdn.nxingcloud.co/images/posts/bing/bing.png" alt="screenshot-bing" style="zoom:50%;" />
+<img src="https://cdn.xenns.com/images/posts/bing/bing.png" alt="screenshot-bing" style="zoom:50%;" />
 
 
 
@@ -131,8 +131,8 @@ https://bing.xenns.com/
 {
     "bing_id": "21",
     "bing_title": "日落时分中央海岸入口海滩上的救生员小屋，澳大利亚新南威尔士州 (© Yury Prokopenko/Getty Images)",
-    "bing_imgurl": "https://ubing.nxingcloud.co/bing/15-Sep-2020/15-Sep-2020.jpg",
-    "bing_imgurlcom_25": "https://ubing.nxingcloud.co/bing/15-Sep-2020/15-Sep-2020-compress_25.jpg",
+    "bing_imgurl": "https://ubing.xenns.com/bing/15-Sep-2020/15-Sep-2020.jpg",
+    "bing_imgurlcom_25": "https://ubing.xenns.com/bing/15-Sep-2020/15-Sep-2020-compress_25.jpg",
     "bing_imgurluhd": "https://cn.bing.com/th?id=OHR.LifeguardEntrance_ZH-CN7394984988_UHD.jpg",
     "bing_imgname": "LifeguardEntrance_ZH-CN7394984988",
     "bing_hsh": "a8712ff7ed3690123f96c2f95830b9f6",

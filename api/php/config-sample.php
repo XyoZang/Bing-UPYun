@@ -1,6 +1,6 @@
 <?php
 /*
-Copyright © 2020 by nxingcloud@163.com
+Copyright © 2020 by XyoZang@163.com
 */
 
 //网站开始运行日期，供获取随机图功能使用
